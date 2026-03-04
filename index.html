@@ -130,23 +130,41 @@
       background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
     }
     
+    /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ФОТО (КАК У КОЛЛЕГИ) ===== */
     .profile-img {
       width: 100%;
       height: 520px;
       object-fit: cover;
       object-position: top center;
       display: block;
-      background: linear-gradient(135deg, #2a2a2a, #3a3a6a);
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
     }
     
-    /* ===== АНИМАЦИЯ ЗАГРУЗКИ ФОТО ===== */
-    .profile-img {
-      animation: fadeInImage 0.5s ease-in-out;
+    .profile-img.loaded {
+      opacity: 1;
+      transform: scale(1);
     }
     
-    @keyframes fadeInImage {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    /* ===== ПЛЕЙСХОЛДЕР-ЭФФЕКТ ===== */
+    .profile-img::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #2a2a2a, #3a3a3a, #2a2a2a);
+      background-size: 200% 200%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    
+    .profile-img.loaded::before {
+      display: none;
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
     }
     
     .online-badge {
@@ -288,6 +306,12 @@
       object-position: top;
       border: 3px solid var(--success);
       flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .testimonial-avatar.loaded {
+      opacity: 1;
     }
     
     .testimonial-user { flex: 1; }
@@ -373,6 +397,12 @@
       margin: 0 auto 25px;
       border: 4px solid var(--success);
       box-shadow: 0 5px 25px rgba(0, 200, 83, 0.4);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .modal-img.loaded {
+      opacity: 1;
     }
     
     .modal h3 {
@@ -497,7 +527,7 @@
         <!-- ОТЗЫВ МУЖЧИНЫ 1 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/man1.jpg" alt="Stefan" class="testimonial-avatar" loading="lazy" decoding="async">
+            <img src="images/man1.jpg" alt="Stefan" class="testimonial-avatar">
             <div class="testimonial-user">
               <div class="testimonial-name">Stefan, 52</div>
               <div class="testimonial-meta">aus Frankfurt</div>
@@ -511,7 +541,7 @@
         <!-- ОТЗЫВ МУЖЧИНЫ 2 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/man2.jpg" alt="Markus" class="testimonial-avatar" loading="lazy" decoding="async">
+            <img src="images/man2.jpg" alt="Markus" class="testimonial-avatar">
             <div class="testimonial-user">
               <div class="testimonial-name">Markus, 48</div>
               <div class="testimonial-meta">aus Berlin</div>
@@ -525,7 +555,7 @@
         <!-- ОТЗЫВ МУЖЧИНЫ 3 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/man3.jpg" alt="Andreas" class="testimonial-avatar" loading="lazy" decoding="async">
+            <img src="images/man3.jpg" alt="Andreas" class="testimonial-avatar">
             <div class="testimonial-user">
               <div class="testimonial-name">Andreas, 55</div>
               <div class="testimonial-meta">aus München</div>
@@ -622,14 +652,30 @@
       return shuffled;
     }
 
-    // ===== СОЗДАНИЕ КАРТОЧКИ ПРОФИЛЯ (С ОПТИМИЗАЦИЕЙ) =====
+    // ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ФОТО ПРИ ЗАГРУЗКЕ =====
+    function setupImageFadeIn(img) {
+      if (img.complete) {
+        // Если уже загружено
+        img.classList.add('loaded');
+      } else {
+        // Ждём загрузки
+        img.addEventListener('load', () => {
+          img.classList.add('loaded');
+        });
+        img.addEventListener('error', () => {
+          // Если ошибка - всё равно показываем
+          img.classList.add('loaded');
+        });
+      }
+    }
+
+    // ===== СОЗДАНИЕ КАРТОЧКИ ПРОФИЛЯ =====
     function createProfileCard(profile, index) {
       const card = document.createElement('div');
       card.className = 'profile-card';
       card.setAttribute('data-name', `${profile.name}, ${profile.age}`);
       card.setAttribute('data-img', `images/${profile.img}`);
       
-      // Первые 3 фото грузятся сразу, остальные с lazy loading
       const loadingAttr = index < 3 ? 'eager' : 'lazy';
       
       card.innerHTML = `
@@ -643,6 +689,10 @@
           <button class="profile-btn" onclick="openModal('${profile.name}, ${profile.age}', 'images/${profile.img}')">Profil ansehen</button>
         </div>
       `;
+      
+      // Находим img и добавляем fade-in
+      const img = card.querySelector('.profile-img');
+      setupImageFadeIn(img);
       
       card.addEventListener('click', (e) => {
         if (!e.target.classList.contains('profile-btn')) {
@@ -670,6 +720,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderRandomProfiles();
       prepareAffiliateLink();
+      
+      // Fade-in для аватарок в отзывах
+      document.querySelectorAll('.testimonial-avatar').forEach(setupImageFadeIn);
     });
 
     function prepareAffiliateLink() {
@@ -710,6 +763,8 @@
       
       if (profileImg) {
         modalImg.src = profileImg;
+        // Fade-in для фото в модалке
+        modalImg.onload = () => modalImg.classList.add('loaded');
         modalImg.style.display = 'block';
       } else {
         modalImg.style.display = 'none';
