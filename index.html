@@ -82,8 +82,8 @@
     
     .profiles-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 35px;
       padding: 20px;
     }
     
@@ -125,9 +125,9 @@
     
     .profile-img {
       width: 100%;
-      height: 320px;
+      height: 520px;
       object-fit: cover;
-      object-position: top;
+      object-position: top center;
       display: block;
       background: linear-gradient(135deg, #2a2a4a, #3a3a6a);
     }
@@ -418,23 +418,26 @@
     }
 
     /* ===== МОБИЛЬНЫЕ ===== */
+    @media (max-width: 1024px) {
+      .profiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+    }
+    
     @media (max-width: 768px) {
       .profiles-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+        grid-template-columns: 1fr;
+        gap: 30px;
         padding: 10px;
       }
-      .profile-img { height: 280px; }
+      .profile-img { height: 480px; }
       .hero h1 { font-size: 1.6rem; }
       .hero-btn { padding: 14px 35px; font-size: 1rem; }
     }
     
     @media (max-width: 480px) {
-      .profiles-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-      .profile-img { height: 350px; }
+      .profile-img { height: 450px; }
       .hero h1 { font-size: 1.4rem; }
       .testimonials-grid { grid-template-columns: 1fr; }
     }
@@ -532,32 +535,6 @@
         </div>
       </div>
 
-      <!-- ПРОФИЛЬ 7 -->
-      <div class="profile-card" data-name="Karin, 46" data-city="Düsseldorf" data-img="images/girl7.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl7.jpg" alt="Karin" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Karin</div>
-          <div class="profile-meta">46 Jahre • Düsseldorf</div>
-          <button class="profile-btn" onclick="openModal('Karin, 46', 'images/girl7.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
-      <!-- ПРОФИЛЬ 8 -->
-      <div class="profile-card" data-name="Susanne, 50" data-city="Leipzig" data-img="images/girl8.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl8.jpg" alt="Susanne" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Susanne</div>
-          <div class="profile-meta">50 Jahre • Leipzig</div>
-          <button class="profile-btn" onclick="openModal('Susanne, 50', 'images/girl8.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
     </div>
 
     <!-- ===== КНОПКА БОЛЬШЕ ПРОФИЛЕЙ ===== -->
@@ -571,53 +548,53 @@
     </div>
   </div>
 
-  <!-- ===== ОТЗЫВЫ ===== -->
+  <!-- ===== ОТЗЫВЫ (МУЖСКИЕ) ===== -->
   <section class="testimonials-section">
     <div class="container">
       <h2 class="section-title">Das sagen unsere Mitglieder</h2>
       
       <div class="testimonials-grid">
         
-        <!-- ОТЗЫВ 1 -->
+        <!-- ОТЗЫВ МУЖЧИНЫ 1 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/girl1.jpg" alt="Michael" class="testimonial-avatar">
+            <img src="images/man1.jpg" alt="Stefan" class="testimonial-avatar">
             <div class="testimonial-user">
-              <div class="testimonial-name">Michael, 54</div>
-              <div class="testimonial-meta">aus Hannover</div>
+              <div class="testimonial-name">Stefan, 52</div>
+              <div class="testimonial-meta">aus Frankfurt</div>
             </div>
           </div>
           <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Nach Jahren der Einsamkeit habe ich hier meine Traumfrau gefunden. Die Anmeldung war einfach und diskret. Danke!"</p>
-          <div class="testimonial-date">vor 2 Wochen</div>
+          <p class="testimonial-text">"Ich war skeptisch, aber nach 2 Wochen habe ich hier eine wunderbare Frau kennengelernt. Die Plattform ist seriös und einfach zu bedienen. Bin sehr glücklich!"</p>
+          <div class="testimonial-date">vor 3 Wochen</div>
         </div>
         
-        <!-- ОТЗЫВ 2 -->
+        <!-- ОТЗЫВ МУЖЧИНЫ 2 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/girl2.jpg" alt="Julia" class="testimonial-avatar">
+            <img src="images/man2.jpg" alt="Markus" class="testimonial-avatar">
             <div class="testimonial-user">
-              <div class="testimonial-name">Julia, 47</div>
-              <div class="testimonial-meta">aus Dresden</div>
+              <div class="testimonial-name">Markus, 48</div>
+              <div class="testimonial-meta">aus Berlin</div>
             </div>
           </div>
           <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Endlich eine seriöse Plattform! Habe nach 3 Tagen einen tollen Mann kennengelernt. Wir sind jetzt seit 4 Monaten zusammen."</p>
+          <p class="testimonial-text">"Endlich eine Dating-Seite, die hält was sie verspricht! Habe meine Partnerin nach einem Monat gefunden. Der Support ist auch top. Absolute Empfehlung!"</p>
           <div class="testimonial-date">vor 1 Monat</div>
         </div>
         
-        <!-- ОТЗЫВ 3 -->
+        <!-- ОТЗЫВ МУЖЧИНЫ 3 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/girl3.jpg" alt="Thomas" class="testimonial-avatar">
+            <img src="images/man3.jpg" alt="Andreas" class="testimonial-avatar">
             <div class="testimonial-user">
-              <div class="testimonial-name">Thomas, 51</div>
-              <div class="testimonial-meta">aus Nürnberg</div>
+              <div class="testimonial-name">Andreas, 55</div>
+              <div class="testimonial-meta">aus München</div>
             </div>
           </div>
           <div class="stars">★★★★☆</div>
-          <p class="testimonial-text">"Sehr gute Auswahl an Profilen in meiner Altersgruppe. Die Kommunikation war von Anfang an angenehm und respektvoll."</p>
-          <div class="testimonial-date">vor 3 Wochen</div>
+          <p class="testimonial-text">"Gute Auswahl an Profilen in meiner Altersgruppe. Die Kommunikation verlief von Anfang an respektvoll. Nach 6 Wochen Dates habe ich meine Traumfrau gefunden."</p>
+          <div class="testimonial-date">vor 2 Wochen</div>
         </div>
         
       </div>
