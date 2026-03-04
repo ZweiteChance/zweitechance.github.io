@@ -7,27 +7,24 @@
   <style>
     /* ===== ЦВЕТОВАЯ ПАЛИТРА ===== */
     :root {
-      --bg-cream: #FFF8E7;
-      --bg-card: #ffffff;
-      --bg-card-hover: #f5f5f5;
+      --bg-dark: #0d0d0d;
+      --bg-card: #1a1a1a;
+      --bg-card-hover: #252525;
       --gold-primary: #d4af37;
       --gold-light: #f4d06f;
-      --text-main: #1a1a2e;
-      --text-muted: #666666;
+      --text-main: #ffffff;
+      --text-muted: #a0a0a0;
       --success: #00c853;
       --success-glow: rgba(0, 200, 83, 0.3);
       --shadow-green: 0 10px 50px rgba(0, 200, 83, 0.25);
       --radius: 20px;
-      --heart-red: #ff0000;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-cream);
-      background-image: 
-        url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff0000' fill-opacity='0.12'%3E%3Cpath d='M45 70c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M180 120c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M320 80c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M90 200c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M250 250c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M350 280c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M150 320c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M300 350c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Ctext x='60' y='160' font-size='20' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='220' y='180' font-size='18' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='380' y='220' font-size='22' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='120' y='380' font-size='19' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='280' y='400' font-size='21' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3C/g%3E%3C/svg%3E");
+      background: linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 50%, #0a0a0a 100%);
       color: var(--text-main);
       min-height: 100vh;
       padding-bottom: 60px;
@@ -43,7 +40,9 @@
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 25px;
-      color: var(--text-main);
+      background: linear-gradient(135deg, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
     .hero-btn {
@@ -95,8 +94,7 @@
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
     .profile-card::before {
@@ -116,7 +114,7 @@
     
     .profile-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 15px 60px rgba(0, 200, 83, 0.3);
+      box-shadow: var(--shadow-green);
     }
     
     .profile-img-container {
@@ -131,7 +129,7 @@
       object-fit: cover;
       object-position: top center;
       display: block;
-      background: linear-gradient(135deg, #f0e6d2, #e8dcc8);
+      background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
     }
     
     .online-badge {
@@ -214,7 +212,7 @@
       display: inline-block;
       padding: 18px 55px;
       background: transparent;
-      color: var(--gold-primary);
+      color: var(--gold-light);
       font-weight: 700;
       font-size: 1.1rem;
       border: 2px solid var(--gold-primary);
@@ -226,7 +224,7 @@
     
     .more-btn:hover {
       background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
-      color: #ffffff;
+      color: #0a0a0a;
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
     }
@@ -234,7 +232,7 @@
     /* ===== ОТЗЫВЫ ===== */
     .testimonials-section {
       padding: 60px 20px;
-      background: linear-gradient(180deg, transparent, rgba(255, 200, 150, 0.15), transparent);
+      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02), transparent);
     }
     
     .testimonials-grid {
@@ -248,9 +246,8 @@
       background: var(--bg-card);
       border-radius: var(--radius);
       padding: 25px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
     .testimonial-card:hover {
@@ -316,7 +313,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.95);
       z-index: 1000;
       justify-content: center;
       align-items: center;
@@ -335,7 +332,7 @@
     }
     
     .modal-content {
-      background: linear-gradient(135deg, var(--bg-card), var(--bg-cream));
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
       border-radius: var(--radius);
       padding: 40px 35px;
       max-width: 450px;
@@ -400,12 +397,12 @@
       color: var(--text-muted);
       font-size: 0.75rem;
       line-height: 1.6;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       margin-top: 30px;
     }
     
     footer a {
-      color: var(--gold-primary);
+      color: var(--gold-light);
       text-decoration: none;
       margin: 0 6px;
     }
