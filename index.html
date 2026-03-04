@@ -7,28 +7,27 @@
   <style>
     /* ===== ЦВЕТОВАЯ ПАЛИТРА ===== */
     :root {
-      --bg-dark: #1a1510;
-      --bg-card: #251e18;
-      --bg-card-hover: #302520;
+      --bg-cream: #FFF8E7;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f5f5f5;
       --gold-primary: #d4af37;
       --gold-light: #f4d06f;
-      --text-main: #ffffff;
-      --text-muted: #c0b0a0;
+      --text-main: #1a1a2e;
+      --text-muted: #666666;
       --success: #00c853;
       --success-glow: rgba(0, 200, 83, 0.3);
       --shadow-green: 0 10px 50px rgba(0, 200, 83, 0.25);
       --radius: 20px;
+      --heart-red: #ff0000;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-dark);
+      background-color: var(--bg-cream);
       background-image: 
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c41e3a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3Cpath d='M15 15c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.8 3.7L15 26l2.7-2.8c1.1-.9 1.8-2.2 1.8-3.7 0-2.5-2-4.5-4.5-4.5z'/%3E%3Cpath d='M45 15c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.8 3.7L45 26l2.7-2.8c1.1-.9 1.8-2.2 1.8-3.7 0-2.5-2-4.5-4.5-4.5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
-        linear-gradient(180deg, rgba(255, 240, 200, 0.08) 0%, rgba(255, 220, 150, 0.05) 100%);
-      background-blend-mode: overlay;
+        url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff0000' fill-opacity='0.12'%3E%3Cpath d='M45 70c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M180 120c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M320 80c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M90 200c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M250 250c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M350 280c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M150 320c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Cpath d='M300 350c-15 0-25 12-25 25 0 8 4 15 10 20l15 15 15-15c6-5 10-12 10-20 0-13-10-25-25-25z'/%3E%3Ctext x='60' y='160' font-size='20' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='220' y='180' font-size='18' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='380' y='220' font-size='22' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='120' y='380' font-size='19' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3Ctext x='280' y='400' font-size='21' fill='%23ff0000' fill-opacity='0.1' font-family='Arial'%3E💋%3C/text%3E%3C/g%3E%3C/svg%3E");
       color: var(--text-main);
       min-height: 100vh;
       padding-bottom: 60px;
@@ -44,9 +43,7 @@
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 25px;
-      background: linear-gradient(135deg, #fff, var(--gold-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-main);
     }
     
     .hero-btn {
@@ -98,7 +95,8 @@
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
     .profile-card::before {
@@ -118,7 +116,7 @@
     
     .profile-card:hover {
       transform: translateY(-8px);
-      box-shadow: var(--shadow-green);
+      box-shadow: 0 15px 60px rgba(0, 200, 83, 0.3);
     }
     
     .profile-img-container {
@@ -133,7 +131,7 @@
       object-fit: cover;
       object-position: top center;
       display: block;
-      background: linear-gradient(135deg, #2a2a4a, #3a3a6a);
+      background: linear-gradient(135deg, #f0e6d2, #e8dcc8);
     }
     
     .online-badge {
@@ -216,7 +214,7 @@
       display: inline-block;
       padding: 18px 55px;
       background: transparent;
-      color: var(--gold-light);
+      color: var(--gold-primary);
       font-weight: 700;
       font-size: 1.1rem;
       border: 2px solid var(--gold-primary);
@@ -228,7 +226,7 @@
     
     .more-btn:hover {
       background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
-      color: #0f0f1a;
+      color: #ffffff;
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
     }
@@ -236,7 +234,7 @@
     /* ===== ОТЗЫВЫ ===== */
     .testimonials-section {
       padding: 60px 20px;
-      background: linear-gradient(180deg, transparent, rgba(255, 200, 150, 0.05), transparent);
+      background: linear-gradient(180deg, transparent, rgba(255, 200, 150, 0.15), transparent);
     }
     
     .testimonials-grid {
@@ -250,8 +248,9 @@
       background: var(--bg-card);
       border-radius: var(--radius);
       padding: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
     .testimonial-card:hover {
@@ -336,7 +335,7 @@
     }
     
     .modal-content {
-      background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-cream));
       border-radius: var(--radius);
       padding: 40px 35px;
       max-width: 450px;
@@ -401,12 +400,12 @@
       color: var(--text-muted);
       font-size: 0.75rem;
       line-height: 1.6;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
       margin-top: 30px;
     }
     
     footer a {
-      color: var(--gold-light);
+      color: var(--gold-primary);
       text-decoration: none;
       margin: 0 6px;
     }
@@ -452,7 +451,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <h1>Finde deine große Liebe in deiner Nähe</h1>
-    <a href="#profiles" class="hero-btn" id="mainCta">Jetzt kostenlos anmelden</a>
+    <a href="#profiles" class="hero-btn" id="mainCta">Zweite Chance</a>
   </section>
 
   <!-- ===== ПРОФИЛИ ===== -->
