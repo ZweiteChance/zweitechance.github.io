@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZweiteChance – Finde deine Liebe</title>
+  
+  <!-- ===== ПРЕДЗАГРУЗКА ПЕРВЫХ ФОТО ===== -->
+  <link rel="preload" as="image" href="images/girl1.jpg">
+  <link rel="preload" as="image" href="images/girl2.jpg">
+  <link rel="preload" as="image" href="images/girl3.jpg">
+  
   <style>
     /* ===== ЦВЕТОВАЯ ПАЛИТРА ===== */
     :root {
@@ -121,6 +127,7 @@
       position: relative;
       z-index: 1;
       overflow: hidden;
+      background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
     }
     
     .profile-img {
@@ -129,7 +136,17 @@
       object-fit: cover;
       object-position: top center;
       display: block;
-      background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+      background: linear-gradient(135deg, #2a2a2a, #3a3a6a);
+    }
+    
+    /* ===== АНИМАЦИЯ ЗАГРУЗКИ ФОТО ===== */
+    .profile-img {
+      animation: fadeInImage 0.5s ease-in-out;
+    }
+    
+    @keyframes fadeInImage {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     
     .online-badge {
@@ -480,7 +497,7 @@
         <!-- ОТЗЫВ МУЖЧИНЫ 1 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/man1.jpg" alt="Stefan" class="testimonial-avatar">
+            <img src="images/man1.jpg" alt="Stefan" class="testimonial-avatar" loading="lazy" decoding="async">
             <div class="testimonial-user">
               <div class="testimonial-name">Stefan, 52</div>
               <div class="testimonial-meta">aus Frankfurt</div>
@@ -494,7 +511,7 @@
         <!-- ОТЗЫВ МУЖЧИНЫ 2 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/man2.jpg" alt="Markus" class="testimonial-avatar">
+            <img src="images/man2.jpg" alt="Markus" class="testimonial-avatar" loading="lazy" decoding="async">
             <div class="testimonial-user">
               <div class="testimonial-name">Markus, 48</div>
               <div class="testimonial-meta">aus Berlin</div>
@@ -508,7 +525,7 @@
         <!-- ОТЗЫВ МУЖЧИНЫ 3 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
-            <img src="images/man3.jpg" alt="Andreas" class="testimonial-avatar">
+            <img src="images/man3.jpg" alt="Andreas" class="testimonial-avatar" loading="lazy" decoding="async">
             <div class="testimonial-user">
               <div class="testimonial-name">Andreas, 55</div>
               <div class="testimonial-meta">aus München</div>
@@ -552,7 +569,7 @@
   <!-- ===== СКРИПТЫ ===== -->
   <script>
     // ⚠️ ЗАМЕНИ ЭТУ ССЫЛКУ НА СВОЮ ПАРТНЁРСКУЮ!
-    const AFFILIATE_LINK = 'https://go.cm-trk6.com/aff_f?h=zq0iIN';
+    const AFFILIATE_LINK = 'https://your-tracker.com/click?sub1={click_id}';
     
     const modal = document.getElementById('confirmModal');
     const modalImg = document.getElementById('modalImg');
@@ -605,16 +622,19 @@
       return shuffled;
     }
 
-    // ===== СОЗДАНИЕ КАРТОЧКИ ПРОФИЛЯ =====
-    function createProfileCard(profile) {
+    // ===== СОЗДАНИЕ КАРТОЧКИ ПРОФИЛЯ (С ОПТИМИЗАЦИЕЙ) =====
+    function createProfileCard(profile, index) {
       const card = document.createElement('div');
       card.className = 'profile-card';
       card.setAttribute('data-name', `${profile.name}, ${profile.age}`);
       card.setAttribute('data-img', `images/${profile.img}`);
       
+      // Первые 3 фото грузятся сразу, остальные с lazy loading
+      const loadingAttr = index < 3 ? 'eager' : 'lazy';
+      
       card.innerHTML = `
         <div class="profile-img-container">
-          <img src="images/${profile.img}" alt="${profile.name}" class="profile-img">
+          <img src="images/${profile.img}" alt="${profile.name}" class="profile-img" loading="${loadingAttr}" decoding="async">
           <div class="online-badge">Online</div>
         </div>
         <div class="profile-info">
@@ -640,8 +660,8 @@
       
       const randomProfiles = shuffleArray(allProfiles).slice(0, 6);
       
-      randomProfiles.forEach(profile => {
-        const card = createProfileCard(profile);
+      randomProfiles.forEach((profile, index) => {
+        const card = createProfileCard(profile, index);
         grid.appendChild(card);
       });
     }
