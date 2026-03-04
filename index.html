@@ -130,7 +130,7 @@
       background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
     }
     
-    /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ФОТО (КАК У КОЛЛЕГИ) ===== */
+    /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ФОТО ===== */
     .profile-img {
       width: 100%;
       height: 520px;
@@ -642,28 +642,25 @@
       { name: 'Anneliese', age: 50, city: 'Freiburg', img: 'girl30.jpg' }
     ];
 
-    // ===== ФУНКЦИЯ ПЕРЕМЕШИВАНИЯ (Fisher-Yates) =====
-    function shuffleArray(array) {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    // ===== ВЫБОР УНИКАЛЬНЫХ СЛУЧАЙНЫХ ПРОФИЛЕЙ =====
+    function getRandomUniqueProfiles(count) {
+      const selected = new Set();
+      while (selected.size < count) {
+        const randomIndex = Math.floor(Math.random() * allProfiles.length);
+        selected.add(allProfiles[randomIndex]);
       }
-      return shuffled;
+      return Array.from(selected);
     }
 
     // ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ФОТО ПРИ ЗАГРУЗКЕ =====
     function setupImageFadeIn(img) {
       if (img.complete) {
-        // Если уже загружено
         img.classList.add('loaded');
       } else {
-        // Ждём загрузки
         img.addEventListener('load', () => {
           img.classList.add('loaded');
         });
         img.addEventListener('error', () => {
-          // Если ошибка - всё равно показываем
           img.classList.add('loaded');
         });
       }
@@ -690,7 +687,6 @@
         </div>
       `;
       
-      // Находим img и добавляем fade-in
       const img = card.querySelector('.profile-img');
       setupImageFadeIn(img);
       
@@ -708,9 +704,10 @@
       const grid = document.getElementById('profilesGrid');
       grid.innerHTML = '';
       
-      const randomProfiles = shuffleArray(allProfiles).slice(0, 6);
+      // Выбираем 6 УНИКАЛЬНЫХ случайных профилей
+      const selectedProfiles = getRandomUniqueProfiles(6);
       
-      randomProfiles.forEach((profile, index) => {
+      selectedProfiles.forEach((profile, index) => {
         const card = createProfileCard(profile, index);
         grid.appendChild(card);
       });
@@ -763,7 +760,6 @@
       
       if (profileImg) {
         modalImg.src = profileImg;
-        // Fade-in для фото в модалке
         modalImg.onload = () => modalImg.classList.add('loaded');
         modalImg.style.display = 'block';
       } else {
