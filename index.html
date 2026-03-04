@@ -7,13 +7,13 @@
   <style>
     /* ===== ЦВЕТОВАЯ ПАЛИТРА ===== */
     :root {
-      --bg-dark: #0f0f1a;
-      --bg-card: #1a1a2e;
-      --bg-card-hover: #252542;
+      --bg-dark: #1a1510;
+      --bg-card: #251e18;
+      --bg-card-hover: #302520;
       --gold-primary: #d4af37;
       --gold-light: #f4d06f;
       --text-main: #ffffff;
-      --text-muted: #a0a0b8;
+      --text-muted: #c0b0a0;
       --success: #00c853;
       --success-glow: rgba(0, 200, 83, 0.3);
       --shadow-green: 0 10px 50px rgba(0, 200, 83, 0.25);
@@ -24,7 +24,11 @@
     
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(180deg, var(--bg-dark) 0%, #16162a 100%);
+      background-color: var(--bg-dark);
+      background-image: 
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c41e3a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3Cpath d='M15 15c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.8 3.7L15 26l2.7-2.8c1.1-.9 1.8-2.2 1.8-3.7 0-2.5-2-4.5-4.5-4.5z'/%3E%3Cpath d='M45 15c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.8 3.7L45 26l2.7-2.8c1.1-.9 1.8-2.2 1.8-3.7 0-2.5-2-4.5-4.5-4.5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+        linear-gradient(180deg, rgba(255, 240, 200, 0.08) 0%, rgba(255, 220, 150, 0.05) 100%);
+      background-blend-mode: overlay;
       color: var(--text-main);
       min-height: 100vh;
       padding-bottom: 60px;
@@ -232,7 +236,7 @@
     /* ===== ОТЗЫВЫ ===== */
     .testimonials-section {
       padding: 60px 20px;
-      background: linear-gradient(180deg, transparent, rgba(0, 200, 83, 0.03), transparent);
+      background: linear-gradient(180deg, transparent, rgba(255, 200, 150, 0.05), transparent);
     }
     
     .testimonials-grid {
@@ -455,86 +459,8 @@
   <div class="container" id="profiles">
     <h2 class="section-title">Beliebte Profile heute</h2>
     
-    <div class="profiles-grid">
-      
-      <!-- ПРОФИЛЬ 1 -->
-      <div class="profile-card" data-name="Anna, 42" data-city="Berlin" data-img="images/girl1.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl1.jpg" alt="Anna" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Anna</div>
-          <div class="profile-meta">42 Jahre • Berlin</div>
-          <button class="profile-btn" onclick="openModal('Anna, 42', 'images/girl1.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
-      <!-- ПРОФИЛЬ 2 -->
-      <div class="profile-card" data-name="Sabine, 48" data-city="München" data-img="images/girl2.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl2.jpg" alt="Sabine" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Sabine</div>
-          <div class="profile-meta">48 Jahre • München</div>
-          <button class="profile-btn" onclick="openModal('Sabine, 48', 'images/girl2.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
-      <!-- ПРОФИЛЬ 3 -->
-      <div class="profile-card" data-name="Claudia, 51" data-city="Hamburg" data-img="images/girl3.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl3.jpg" alt="Claudia" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Claudia</div>
-          <div class="profile-meta">51 Jahre • Hamburg</div>
-          <button class="profile-btn" onclick="openModal('Claudia, 51', 'images/girl3.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
-      <!-- ПРОФИЛЬ 4 -->
-      <div class="profile-card" data-name="Petra, 45" data-city="Köln" data-img="images/girl4.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl4.jpg" alt="Petra" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Petra</div>
-          <div class="profile-meta">45 Jahre • Köln</div>
-          <button class="profile-btn" onclick="openModal('Petra, 45', 'images/girl4.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
-      <!-- ПРОФИЛЬ 5 -->
-      <div class="profile-card" data-name="Monika, 53" data-city="Frankfurt" data-img="images/girl5.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl5.jpg" alt="Monika" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Monika</div>
-          <div class="profile-meta">53 Jahre • Frankfurt</div>
-          <button class="profile-btn" onclick="openModal('Monika, 53', 'images/girl5.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
-      <!-- ПРОФИЛЬ 6 -->
-      <div class="profile-card" data-name="Birgit, 49" data-city="Stuttgart" data-img="images/girl6.jpg">
-        <div class="profile-img-container">
-          <img src="images/girl6.jpg" alt="Birgit" class="profile-img">
-          <div class="online-badge">Online</div>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name">Birgit</div>
-          <div class="profile-meta">49 Jahre • Stuttgart</div>
-          <button class="profile-btn" onclick="openModal('Birgit, 49', 'images/girl6.jpg')">Profil ansehen</button>
-        </div>
-      </div>
-
+    <div class="profiles-grid" id="profilesGrid">
+      <!-- Профили будут добавлены через JavaScript -->
     </div>
 
     <!-- ===== КНОПКА БОЛЬШЕ ПРОФИЛЕЙ ===== -->
@@ -605,7 +531,7 @@
   <div class="modal" id="confirmModal">
     <div class="modal-content">
       <img src="" alt="Profile" class="modal-img" id="modalImg">
-      <h3 id="modalTitle">Anna möchte dich kennenlernen!</h3>
+      <h3 id="modalTitle">Profil ansehen</h3>
       <p>Bestätige, dass du über 18 bist, um die Verbindung fortzusetzen.</p>
       <button class="modal-btn" id="modalContinue">Ja, ich bin 18+ →</button>
     </div>
@@ -630,7 +556,7 @@
   <!-- ===== СКРИПТЫ ===== -->
   <script>
     // ⚠️ ЗАМЕНИ ЭТУ ССЫЛКУ НА СВОЮ ПАРТНЁРСКУЮ!
-    const AFFILIATE_LINK = 'https://go.cm-trk6.com/aff_f?h=zq0iIN';
+    const AFFILIATE_LINK = 'https://your-tracker.com/click?sub1={click_id}';
     
     const modal = document.getElementById('confirmModal');
     const modalImg = document.getElementById('modalImg');
@@ -638,9 +564,95 @@
     const modalContinue = document.getElementById('modalContinue');
     const mainCta = document.getElementById('mainCta');
     const moreProfilesBtn = document.getElementById('moreProfilesBtn');
-    const profileCards = document.querySelectorAll('.profile-card');
+    
+    // ===== БАЗА ДАННЫХ ПРОФИЛЕЙ (30 ФОТО) =====
+    const allProfiles = [
+      { name: 'Anna', age: 42, city: 'Berlin', img: 'girl1.jpg' },
+      { name: 'Sabine', age: 48, city: 'München', img: 'girl2.jpg' },
+      { name: 'Claudia', age: 51, city: 'Hamburg', img: 'girl3.jpg' },
+      { name: 'Petra', age: 45, city: 'Köln', img: 'girl4.jpg' },
+      { name: 'Monika', age: 53, city: 'Frankfurt', img: 'girl5.jpg' },
+      { name: 'Birgit', age: 49, city: 'Stuttgart', img: 'girl6.jpg' },
+      { name: 'Karin', age: 46, city: 'Düsseldorf', img: 'girl7.jpg' },
+      { name: 'Susanne', age: 50, city: 'Leipzig', img: 'girl8.jpg' },
+      { name: 'Andrea', age: 44, city: 'Dresden', img: 'girl9.jpg' },
+      { name: 'Martina', age: 47, city: 'Hannover', img: 'girl10.jpg' },
+      { name: 'Gabriele', age: 52, city: 'Nürnberg', img: 'girl11.jpg' },
+      { name: 'Ute', age: 43, city: 'Duisburg', img: 'girl12.jpg' },
+      { name: 'Renate', age: 54, city: 'Bochum', img: 'girl13.jpg' },
+      { name: 'Helga', age: 41, city: 'Wuppertal', img: 'girl14.jpg' },
+      { name: 'Ingrid', age: 46, city: 'Bielefeld', img: 'girl15.jpg' },
+      { name: 'Gisela', age: 55, city: 'Bonn', img: 'girl16.jpg' },
+      { name: 'Christa', age: 45, city: 'Münster', img: 'girl17.jpg' },
+      { name: 'Waltraud', age: 48, city: 'Karlsruhe', img: 'girl18.jpg' },
+      { name: 'Elfriede', age: 50, city: 'Mannheim', img: 'girl19.jpg' },
+      { name: 'Hildegard', age: 47, city: 'Augsburg', img: 'girl20.jpg' },
+      { name: 'Brigitte', age: 44, city: 'Wiesbaden', img: 'girl21.jpg' },
+      { name: 'Ursula', age: 53, city: 'Gelsenkirchen', img: 'girl22.jpg' },
+      { name: 'Gerda', age: 46, city: 'Mönchengladbach', img: 'girl23.jpg' },
+      { name: 'Erika', age: 49, city: 'Braunschweig', img: 'girl24.jpg' },
+      { name: 'Margot', age: 52, city: 'Chemnitz', img: 'girl25.jpg' },
+      { name: 'Ruth', age: 45, city: 'Kiel', img: 'girl26.jpg' },
+      { name: 'Edith', age: 48, city: 'Aachen', img: 'girl27.jpg' },
+      { name: 'Herta', age: 51, city: 'Halle', img: 'girl28.jpg' },
+      { name: 'Lieselotte', age: 47, city: 'Magdeburg', img: 'girl29.jpg' },
+      { name: 'Anneliese', age: 50, city: 'Freiburg', img: 'girl30.jpg' }
+    ];
 
+    // ===== ФУНКЦИЯ ПЕРЕМЕШИВАНИЯ (Fisher-Yates) =====
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // ===== СОЗДАНИЕ КАРТОЧКИ ПРОФИЛЯ =====
+    function createProfileCard(profile) {
+      const card = document.createElement('div');
+      card.className = 'profile-card';
+      card.setAttribute('data-name', `${profile.name}, ${profile.age}`);
+      card.setAttribute('data-img', `images/${profile.img}`);
+      
+      card.innerHTML = `
+        <div class="profile-img-container">
+          <img src="images/${profile.img}" alt="${profile.name}" class="profile-img">
+          <div class="online-badge">Online</div>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">${profile.name}</div>
+          <div class="profile-meta">${profile.age} Jahre • ${profile.city}</div>
+          <button class="profile-btn" onclick="openModal('${profile.name}, ${profile.age}', 'images/${profile.img}')">Profil ansehen</button>
+        </div>
+      `;
+      
+      card.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('profile-btn')) {
+          openModal(`${profile.name}, ${profile.age}`, `images/${profile.img}`);
+        }
+      });
+      
+      return card;
+    }
+
+    // ===== ОТРИСОВКА СЛУЧАЙНЫХ ПРОФИЛЕЙ =====
+    function renderRandomProfiles() {
+      const grid = document.getElementById('profilesGrid');
+      grid.innerHTML = '';
+      
+      const randomProfiles = shuffleArray(allProfiles).slice(0, 6);
+      
+      randomProfiles.forEach(profile => {
+        const card = createProfileCard(profile);
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
     document.addEventListener('DOMContentLoaded', () => {
+      renderRandomProfiles();
       prepareAffiliateLink();
     });
 
@@ -680,7 +692,6 @@
         modalTitle.textContent = 'Warte! Dein Match ist bereit 💫';
       }
       
-      // Устанавливаем фото профиля в модалку
       if (profileImg) {
         modalImg.src = profileImg;
         modalImg.style.display = 'block';
@@ -692,20 +703,6 @@
       document.body.style.overflow = 'hidden';
     }
 
-    // Клик по карточке профиля
-    profileCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        // Если клик не по кнопке
-        if (!e.target.classList.contains('profile-btn')) {
-          e.preventDefault();
-          const name = card.getAttribute('data-name');
-          const img = card.getAttribute('data-img');
-          openModal(name, img);
-        }
-      });
-    });
-
-    // Закрытие модалки по клику вне её
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('active');
