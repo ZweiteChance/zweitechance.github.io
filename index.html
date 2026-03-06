@@ -16,14 +16,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    /* ===== DARK COLOR PALETTE WITH YELLOW & GREEN ===== */
+    /* ===== DARK COLOR PALETTE ===== */
     :root {
       --bg-dark: #0a0a0a;
       --bg-card: #1a1a1a;
       --bg-card-hover: #252525;
-      --accent-yellow: #FFE917;
-      --accent-yellow-dark: #D4C408;
-      --accent-yellow-light: #FFF176;
+      --bg-info: #2a2a2a;
+      --bg-info-dark: #202020;
       --accent-green: #00c853;
       --accent-green-dark: #00a844;
       --accent-glow: rgba(0, 200, 83, 0.3);
@@ -216,30 +215,30 @@
       50% { opacity: 0.4; }
     }
     
-    /* ===== YELLOW CARD BOTTOM ===== */
+    /* ===== DARK CARD BOTTOM ===== */
     .profile-info {
       padding: 25px 20px;
       text-align: center;
       position: relative;
       z-index: 1;
-      background: linear-gradient(135deg, var(--accent-yellow), var(--accent-yellow-dark));
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      background: linear-gradient(135deg, var(--bg-info), var(--bg-info-dark));
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .profile-name {
       font-family: var(--font-heading);
-      font-weight: 800;
+      font-weight: 700;
       font-size: 1.4rem;
-      color: #0a0a0a;
+      color: #ffffff;
       margin-bottom: 8px;
       letter-spacing: -0.3px;
     }
     
     .profile-meta {
-      color: rgba(0, 0, 0, 0.85);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 0.95rem;
       margin-bottom: 18px;
-      font-weight: 600;
+      font-weight: 500;
     }
     
     .profile-btn {
@@ -370,7 +369,7 @@
     }
     
     .stars {
-      color: var(--accent-yellow);
+      color: #ffc107;
       font-size: 1rem;
       letter-spacing: 2px;
       margin-bottom: 15px;
@@ -421,7 +420,7 @@
       max-width: 450px;
       width: 100%;
       text-align: center;
-      border: 2px solid var(--accent-green);
+      border: 2px solid var(--success);
       box-shadow: 0 10px 50px var(--accent-glow);
       animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -496,7 +495,7 @@
     }
     
     footer a {
-      color: var(--accent-green);
+      color: var(--success);
       text-decoration: none;
       margin: 0 6px;
     }
