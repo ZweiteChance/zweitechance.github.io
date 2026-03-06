@@ -5,73 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZweiteChance – Finde deine Liebe</title>
   
-  <!-- ===== ПРЕДЗАГРУЗКА ПЕРВЫХ ФОТО ===== -->
+  <!-- ===== PRELOAD FIRST IMAGES ===== -->
   <link rel="preload" as="image" href="images/girl1.jpg">
   <link rel="preload" as="image" href="images/girl2.jpg">
   <link rel="preload" as="image" href="images/girl3.jpg">
   
+  <!-- ===== GOOGLE FONTS - PREMIUM SANS-SERIF ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
-    /* ===== ЦВЕТОВАЯ ПАЛИТРА ===== */
+    /* ===== DARK COLOR PALETTE WITH BURGUNDY ACCENT ===== */
     :root {
-      --bg-dark: #0d0d0d;
+      --bg-dark: #0a0a0a;
       --bg-card: #1a1a1a;
       --bg-card-hover: #252525;
-      --gold-primary: #d4af37;
-      --gold-light: #f4d06f;
+      --accent-burgundy: #800020;
+      --accent-burgundy-dark: #5a0016;
+      --accent-burgundy-light: #a30029;
+      --accent-glow: rgba(0, 200, 83, 0.3);
       --text-main: #ffffff;
-      --text-muted: #a0a0a0;
+      --text-muted: #b0b0b0;
       --success: #00c853;
-      --success-glow: rgba(0, 200, 83, 0.3);
       --shadow-green: 0 10px 50px rgba(0, 200, 83, 0.25);
       --radius: 20px;
+      --font-heading: 'Inter', sans-serif;
+      --font-body: 'Inter', sans-serif;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 50%, #0a0a0a 100%);
+      font-family: var(--font-body);
+      background: linear-gradient(180deg, #0a0a0a 0%, #121212 50%, #0a0a0a 100%);
       color: var(--text-main);
       min-height: 100vh;
       padding-bottom: 60px;
     }
 
-    /* ===== HERO SECTION ===== */
+    /* ===== HERO SECTION - REDUCED SPACING ===== */
     .hero {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 60px 20px 25px;
     }
     
     .hero h1 {
-      font-size: 2rem;
-      font-weight: 600;
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 800;
       margin-bottom: 25px;
-      background: linear-gradient(135deg, #fff, var(--gold-light));
+      background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+      line-height: 1.2;
     }
     
     .hero-btn {
       display: inline-block;
-      padding: 16px 45px;
-      background: linear-gradient(135deg, var(--success), #00a844);
+      padding: 16px 48px;
+      background: linear-gradient(135deg, var(--accent-burgundy), var(--accent-burgundy-dark));
       color: white;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 8px 30px rgba(0, 200, 83, 0.4);
+      box-shadow: 0 8px 30px rgba(128, 0, 32, 0.4);
       transition: all 0.3s ease;
+      font-family: var(--font-body);
+      letter-spacing: -0.3px;
     }
     
     .hero-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0, 200, 83, 0.6);
+      box-shadow: 0 12px 40px rgba(128, 0, 32, 0.6);
     }
 
-    /* ===== СЕТКА ПРОФИЛЕЙ ===== */
+    /* ===== PROFILES GRID ===== */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -80,10 +94,12 @@
     
     .section-title {
       text-align: center;
-      font-size: 1.6rem;
-      margin: 40px 0 30px;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 30px 0 35px;
       color: var(--text-main);
-      font-weight: 600;
+      letter-spacing: -0.5px;
     }
     
     .profiles-grid {
@@ -100,14 +116,15 @@
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 200, 83, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
     
     .profile-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at 50% 0%, var(--success-glow), transparent 70%);
+      background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 70%);
       opacity: 0;
       transition: opacity 0.4s ease;
       pointer-events: none;
@@ -121,16 +138,17 @@
     .profile-card:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-green);
+      border-color: var(--success);
     }
     
     .profile-img-container {
       position: relative;
       z-index: 1;
       overflow: hidden;
-      background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+      background: linear-gradient(135deg, #1a1a1a, #252525);
     }
     
-    /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ФОТО ===== */
+    /* ===== SMOOTH FADE-IN FOR IMAGES ===== */
     .profile-img {
       width: 100%;
       height: 520px;
@@ -148,12 +166,12 @@
       transform: scale(1);
     }
     
-    /* ===== ПЛЕЙСХОЛДЕР-ЭФФЕКТ ===== */
+    /* ===== SHIMMER PLACEHOLDER ===== */
     .profile-img::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(135deg, #2a2a2a, #3a3a3a, #2a2a2a);
+      background: linear-gradient(135deg, #1a1a1a, #252525, #1a1a1a);
       background-size: 200% 200%;
       animation: shimmer 1.5s ease-in-out infinite;
     }
@@ -196,98 +214,120 @@
       50% { opacity: 0.4; }
     }
     
+    /* ===== BURGUNDY CARD BOTTOM ===== */
     .profile-info {
-      padding: 20px;
+      padding: 25px 20px;
       text-align: center;
       position: relative;
       z-index: 1;
-      background: var(--bg-card);
+      background: linear-gradient(135deg, var(--accent-burgundy), var(--accent-burgundy-dark));
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .profile-name {
-      font-weight: 600;
-      font-size: 1.3rem;
-      color: var(--text-main);
-      margin-bottom: 6px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: white;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      letter-spacing: -0.3px;
     }
     
     .profile-meta {
-      color: var(--text-muted);
+      color: rgba(255, 255, 255, 0.95);
       font-size: 0.95rem;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
+      font-weight: 500;
     }
     
     .profile-btn {
       display: inline-block;
       padding: 12px 35px;
-      background: linear-gradient(135deg, var(--success), #00a844);
-      color: white;
-      font-weight: 600;
+      background: white;
+      color: var(--accent-burgundy-dark);
+      font-weight: 700;
       font-size: 0.95rem;
       border: none;
       border-radius: 25px;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
+      font-family: var(--font-body);
+      letter-spacing: -0.2px;
     }
     
     .profile-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.5);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      background: #f5f5f5;
     }
 
-    /* ===== КНОПКА БОЛЬШЕ ПРОФИЛЕЙ ===== */
+    /* ===== MORE PROFILES BUTTON ===== */
     .more-profiles {
       text-align: center;
-      margin: 50px 0 30px;
+      margin: 45px 0 25px;
     }
     
     .more-btn {
       display: inline-block;
-      padding: 18px 55px;
+      padding: 16px 50px;
       background: transparent;
-      color: var(--gold-light);
+      color: var(--success);
       font-weight: 700;
-      font-size: 1.1rem;
-      border: 2px solid var(--gold-primary);
+      font-size: 1.05rem;
+      border: 2px solid var(--success);
       border-radius: 50px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.3s ease;
+      font-family: var(--font-body);
+      letter-spacing: -0.3px;
     }
     
     .more-btn:hover {
-      background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
-      color: #0a0a0a;
+      background: linear-gradient(135deg, var(--success), #00a844);
+      color: white;
       transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 8px 30px var(--accent-glow);
     }
 
-    /* ===== ОТЗЫВЫ ===== */
+    /* ===== TRUST BADGE - MINIMAL SPACING ===== */
+    .trust-section {
+      text-align: center;
+      padding: 15px 20px 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    /* ===== TESTIMONIALS - MINIMAL TOP PADDING ===== */
     .testimonials-section {
-      padding: 60px 20px;
-      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+      padding: 10px 20px 60px;
+      background: linear-gradient(180deg, transparent, rgba(0, 200, 83, 0.05), transparent);
     }
     
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
+      gap: 30px;
       margin-top: 30px;
     }
     
     .testimonial-card {
       background: var(--bg-card);
       border-radius: var(--radius);
-      padding: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border: 1px solid rgba(0, 200, 83, 0.15);
       transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .testimonial-card:hover {
-      border-color: rgba(0, 200, 83, 0.4);
-      transform: translateY(-3px);
+      border-color: var(--success);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-green);
     }
     
@@ -317,9 +357,11 @@
     .testimonial-user { flex: 1; }
     
     .testimonial-name {
-      font-weight: 600;
+      font-family: var(--font-heading);
+      font-weight: 700;
       font-size: 1.1rem;
       color: var(--text-main);
+      letter-spacing: -0.3px;
     }
     
     .testimonial-meta {
@@ -328,16 +370,16 @@
     }
     
     .stars {
-      color: var(--gold-primary);
+      color: #ffc107;
       font-size: 1rem;
       letter-spacing: 2px;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
     
     .testimonial-text {
       color: var(--text-muted);
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.7;
       font-style: italic;
     }
     
@@ -348,7 +390,7 @@
       opacity: 0.7;
     }
 
-    /* ===== МОДАЛКА ===== */
+    /* ===== MODAL ===== */
     .modal {
       display: none;
       position: fixed;
@@ -373,14 +415,14 @@
     }
     
     .modal-content {
-      background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
+      background: linear-gradient(135deg, var(--bg-card), #1a1a1a);
       border-radius: var(--radius);
       padding: 40px 35px;
       max-width: 450px;
       width: 100%;
       text-align: center;
-      border: 1px solid rgba(0, 200, 83, 0.3);
-      box-shadow: 0 10px 50px rgba(0, 200, 83, 0.3);
+      border: 2px solid var(--success);
+      box-shadow: 0 10px 50px var(--accent-glow);
       animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
@@ -396,7 +438,7 @@
       object-position: top;
       margin: 0 auto 25px;
       border: 4px solid var(--success);
-      box-shadow: 0 5px 25px rgba(0, 200, 83, 0.4);
+      box-shadow: 0 5px 25px var(--accent-glow);
       opacity: 0;
       transition: opacity 0.4s ease;
     }
@@ -406,9 +448,12 @@
     }
     
     .modal h3 {
-      font-size: 1.5rem;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
       margin-bottom: 15px;
       color: var(--text-main);
+      letter-spacing: -0.5px;
     }
     
     .modal p {
@@ -421,7 +466,7 @@
     .modal-btn {
       width: 100%;
       padding: 18px;
-      background: linear-gradient(135deg, var(--success), #00a844);
+      background: linear-gradient(135deg, var(--accent-burgundy), var(--accent-burgundy-dark));
       color: white;
       font-weight: 700;
       border: none;
@@ -429,27 +474,29 @@
       font-size: 1.1rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(0, 200, 83, 0.4);
+      box-shadow: 0 5px 20px rgba(128, 0, 32, 0.4);
+      font-family: var(--font-body);
+      letter-spacing: -0.3px;
     }
     
     .modal-btn:hover {
-      box-shadow: 0 8px 30px rgba(0, 200, 83, 0.6);
+      box-shadow: 0 8px 30px rgba(128, 0, 32, 0.6);
       transform: translateY(-2px);
     }
 
-    /* ===== ПОДВАЛ ===== */
+    /* ===== FOOTER ===== */
     footer {
       text-align: center;
-      padding: 30px 20px 40px;
+      padding: 40px 20px 50px;
       color: var(--text-muted);
       font-size: 0.75rem;
       line-height: 1.6;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      margin-top: 30px;
+      border-top: 1px solid rgba(0, 200, 83, 0.1);
+      margin-top: 40px;
     }
     
     footer a {
-      color: var(--gold-light);
+      color: var(--success);
       text-decoration: none;
       margin: 0 6px;
     }
@@ -464,7 +511,7 @@
       margin-right: auto;
     }
 
-    /* ===== МОБИЛЬНЫЕ ===== */
+    /* ===== MOBILE ===== */
     @media (max-width: 1024px) {
       .profiles-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -479,13 +526,13 @@
         padding: 10px;
       }
       .profile-img { height: 480px; }
-      .hero h1 { font-size: 1.6rem; }
-      .hero-btn { padding: 14px 35px; font-size: 1rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero-btn { padding: 14px 38px; font-size: 1rem; }
     }
     
     @media (max-width: 480px) {
       .profile-img { height: 450px; }
-      .hero h1 { font-size: 1.4rem; }
+      .hero h1 { font-size: 1.6rem; }
       .testimonials-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -498,7 +545,7 @@
     <a href="#profiles" class="hero-btn" id="mainCta">Zweite Chance</a>
   </section>
 
-  <!-- ===== ПРОФИЛИ ===== -->
+  <!-- ===== PROFILES ===== -->
   <div class="container" id="profiles">
     <h2 class="section-title">Beliebte Profile heute</h2>
     
@@ -506,18 +553,18 @@
       <!-- Профили будут добавлены через JavaScript -->
     </div>
 
-    <!-- ===== КНОПКА БОЛЬШЕ ПРОФИЛЕЙ ===== -->
+    <!-- ===== MORE PROFILES BUTTON ===== -->
     <div class="more-profiles">
       <a href="#" class="more-btn" id="moreProfilesBtn">Mehr Profile ansehen →</a>
     </div>
 
-    <!-- ===== ДОВЕРИЕ ===== -->
-    <div class="trust-section" style="text-align: center; padding: 25px 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 20px;">
+    <!-- ===== TRUST BADGE ===== -->
+    <div class="trust-section">
       <div>🔒 SSL-verschlüsselt • 💯 Diskret • ✅ Keine versteckten Kosten</div>
     </div>
   </div>
 
-  <!-- ===== ОТЗЫВЫ (МУЖСКИЕ) ===== -->
+  <!-- ===== TESTIMONIALS (MALE) ===== -->
   <section class="testimonials-section">
     <div class="container">
       <h2 class="section-title">Das sagen unsere Mitglieder</h2>
@@ -570,7 +617,7 @@
     </div>
   </section>
 
-  <!-- ===== МОДАЛКА ===== -->
+  <!-- ===== MODAL ===== -->
   <div class="modal" id="confirmModal">
     <div class="modal-content">
       <img src="" alt="Profile" class="modal-img" id="modalImg">
@@ -580,7 +627,7 @@
     </div>
   </div>
 
-  <!-- ===== ПОДВАЛ ===== -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div>
       <a href="/privacy.html">Datenschutz</a> • 
@@ -596,7 +643,7 @@
     </div>
   </footer>
 
-  <!-- ===== СКРИПТЫ ===== -->
+  <!-- ===== SCRIPTS ===== -->
   <script>
     // ⚠️ ЗАМЕНИ ЭТУ ССЫЛКУ НА СВОЮ ПАРТНЁРСКУЮ!
     const AFFILIATE_LINK = 'https://go.cm-trk6.com/aff_f?h=zq0iIN';
@@ -642,7 +689,7 @@
       { name: 'Anneliese', age: 50, city: 'Freiburg', img: 'girl30.jpg' }
     ];
 
-    // ===== ВЫБОР УНИКАЛЬНЫХ СЛУЧАЙНЫХ ПРОФИЛЕЙ =====
+    // ===== GET UNIQUE RANDOM PROFILES =====
     function getRandomUniqueProfiles(count) {
       const selected = new Set();
       while (selected.size < count) {
@@ -652,7 +699,7 @@
       return Array.from(selected);
     }
 
-    // ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ФОТО ПРИ ЗАГРУЗКЕ =====
+    // ===== SMOOTH FADE-IN FOR IMAGES =====
     function setupImageFadeIn(img) {
       if (img.complete) {
         img.classList.add('loaded');
@@ -666,7 +713,7 @@
       }
     }
 
-    // ===== СОЗДАНИЕ КАРТОЧКИ ПРОФИЛЯ =====
+    // ===== CREATE PROFILE CARD =====
     function createProfileCard(profile, index) {
       const card = document.createElement('div');
       card.className = 'profile-card';
@@ -699,12 +746,11 @@
       return card;
     }
 
-    // ===== ОТРИСОВКА СЛУЧАЙНЫХ ПРОФИЛЕЙ =====
+    // ===== RENDER RANDOM PROFILES =====
     function renderRandomProfiles() {
       const grid = document.getElementById('profilesGrid');
       grid.innerHTML = '';
       
-      // Выбираем 6 УНИКАЛЬНЫХ случайных профилей
       const selectedProfiles = getRandomUniqueProfiles(6);
       
       selectedProfiles.forEach((profile, index) => {
@@ -713,12 +759,11 @@
       });
     }
 
-    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    // ===== INITIALIZATION =====
     document.addEventListener('DOMContentLoaded', () => {
       renderRandomProfiles();
       prepareAffiliateLink();
       
-      // Fade-in для аватарок в отзывах
       document.querySelectorAll('.testimonial-avatar').forEach(setupImageFadeIn);
     });
 
