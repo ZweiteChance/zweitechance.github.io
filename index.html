@@ -10,7 +10,7 @@
   <link rel="preload" as="image" href="images/girl2.jpg">
   <link rel="preload" as="image" href="images/girl3.jpg">
   
-  <!-- ===== GOOGLE FONTS - PREMIUM SANS-SERIF ===== -->
+  <!-- ===== GOOGLE FONTS ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
       padding-bottom: 60px;
     }
 
-    /* ===== HERO SECTION - REDUCED SPACING ===== */
+    /* ===== HERO SECTION ===== */
     .hero {
       text-align: center;
       padding: 60px 20px 25px;
@@ -292,7 +292,7 @@
       box-shadow: 0 8px 30px var(--accent-glow);
     }
 
-    /* ===== TRUST BADGE - MINIMAL SPACING ===== */
+    /* ===== TRUST BADGE ===== */
     .trust-section {
       text-align: center;
       padding: 15px 20px 0;
@@ -302,7 +302,7 @@
       margin-bottom: 0;
     }
 
-    /* ===== TESTIMONIALS - MINIMAL TOP PADDING ===== */
+    /* ===== TESTIMONIALS ===== */
     .testimonials-section {
       padding: 10px 20px 60px;
       background: linear-gradient(180deg, transparent, rgba(0, 200, 83, 0.05), transparent);
@@ -549,7 +549,7 @@
     <h2 class="section-title">Beliebte Profile heute</h2>
     
     <div class="profiles-grid" id="profilesGrid">
-      <!-- Профили будут добавлены через JavaScript -->
+      <!-- Profile werden per JavaScript hinzugefügt -->
     </div>
 
     <!-- ===== MORE PROFILES BUTTON ===== -->
@@ -563,14 +563,14 @@
     </div>
   </div>
 
-  <!-- ===== TESTIMONIALS (MALE) ===== -->
+  <!-- ===== TESTIMONIALS ===== -->
   <section class="testimonials-section">
     <div class="container">
       <h2 class="section-title">Das sagen unsere Mitglieder</h2>
       
       <div class="testimonials-grid">
         
-        <!-- ОТЗЫВ МУЖЧИНЫ 1 -->
+        <!-- TESTIMONIAL 1 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
             <img src="images/man1.jpg" alt="Stefan" class="testimonial-avatar">
@@ -584,7 +584,7 @@
           <div class="testimonial-date">vor 3 Wochen</div>
         </div>
         
-        <!-- ОТЗЫВ МУЖЧИНЫ 2 -->
+        <!-- TESTIMONIAL 2 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
             <img src="images/man2.jpg" alt="Markus" class="testimonial-avatar">
@@ -598,7 +598,7 @@
           <div class="testimonial-date">vor 1 Monat</div>
         </div>
         
-        <!-- ОТЗЫВ МУЖЧИНЫ 3 -->
+        <!-- TESTIMONIAL 3 -->
         <div class="testimonial-card">
           <div class="testimonial-header">
             <img src="images/man3.jpg" alt="Andreas" class="testimonial-avatar">
@@ -640,7 +640,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
-    // ⚠️ ЗАМЕНИ ЭТУ ССЫЛКУ НА СВОЮ ПАРТНЁРСКУЮ!
+    // ⚠️ HIER DEINEN AFFILIATE-LINK EINFÜGEN!
     const AFFILIATE_LINK = 'https://go.cm-trk6.com/aff_f?h=zq0iIN';
     
     const modal = document.getElementById('confirmModal');
@@ -650,38 +650,95 @@
     const mainCta = document.getElementById('mainCta');
     const moreProfilesBtn = document.getElementById('moreProfilesBtn');
     
-    // ===== БАЗА ДАННЫХ ПРОФИЛЕЙ (30 ФОТО) =====
+    // ===== PROFILE DATABASE (87 FOTOS) - SELTENE NAMEN & KLEINE STÄDTE =====
     const allProfiles = [
-      { name: 'Anna', age: 42, city: 'Berlin', img: 'girl1.jpg' },
-      { name: 'Sabine', age: 48, city: 'München', img: 'girl2.jpg' },
-      { name: 'Claudia', age: 51, city: 'Hamburg', img: 'girl3.jpg' },
-      { name: 'Petra', age: 45, city: 'Köln', img: 'girl4.jpg' },
-      { name: 'Monika', age: 53, city: 'Frankfurt', img: 'girl5.jpg' },
-      { name: 'Birgit', age: 49, city: 'Stuttgart', img: 'girl6.jpg' },
-      { name: 'Karin', age: 46, city: 'Düsseldorf', img: 'girl7.jpg' },
-      { name: 'Susanne', age: 50, city: 'Leipzig', img: 'girl8.jpg' },
-      { name: 'Andrea', age: 44, city: 'Dresden', img: 'girl9.jpg' },
-      { name: 'Martina', age: 47, city: 'Hannover', img: 'girl10.jpg' },
-      { name: 'Gabriele', age: 52, city: 'Nürnberg', img: 'girl11.jpg' },
-      { name: 'Ute', age: 43, city: 'Duisburg', img: 'girl12.jpg' },
-      { name: 'Renate', age: 54, city: 'Bochum', img: 'girl13.jpg' },
-      { name: 'Helga', age: 41, city: 'Wuppertal', img: 'girl14.jpg' },
-      { name: 'Ingrid', age: 46, city: 'Bielefeld', img: 'girl15.jpg' },
-      { name: 'Gisela', age: 55, city: 'Bonn', img: 'girl16.jpg' },
-      { name: 'Christa', age: 45, city: 'Münster', img: 'girl17.jpg' },
-      { name: 'Waltraud', age: 48, city: 'Karlsruhe', img: 'girl18.jpg' },
-      { name: 'Elfriede', age: 50, city: 'Mannheim', img: 'girl19.jpg' },
-      { name: 'Hildegard', age: 47, city: 'Augsburg', img: 'girl20.jpg' },
-      { name: 'Brigitte', age: 44, city: 'Wiesbaden', img: 'girl21.jpg' },
-      { name: 'Ursula', age: 53, city: 'Gelsenkirchen', img: 'girl22.jpg' },
-      { name: 'Gerda', age: 46, city: 'Mönchengladbach', img: 'girl23.jpg' },
-      { name: 'Erika', age: 49, city: 'Braunschweig', img: 'girl24.jpg' },
-      { name: 'Margot', age: 52, city: 'Chemnitz', img: 'girl25.jpg' },
-      { name: 'Ruth', age: 45, city: 'Kiel', img: 'girl26.jpg' },
-      { name: 'Edith', age: 48, city: 'Aachen', img: 'girl27.jpg' },
-      { name: 'Herta', age: 51, city: 'Halle', img: 'girl28.jpg' },
-      { name: 'Lieselotte', age: 47, city: 'Magdeburg', img: 'girl29.jpg' },
-      { name: 'Anneliese', age: 50, city: 'Freiburg', img: 'girl30.jpg' }
+      { name: 'Ingeborg', age: 52, city: 'Passau', img: 'girl1.jpg' },
+      { name: 'Hildegard', age: 54, city: 'Bamberg', img: 'girl2.jpg' },
+      { name: 'Brunhilde', age: 51, city: 'Görlitz', img: 'girl3.jpg' },
+      { name: 'Waltraud', age: 49, city: 'Weimar', img: 'girl4.jpg' },
+      { name: 'Gertrud', age: 53, city: 'Rothenburg', img: 'girl5.jpg' },
+      { name: 'Mechthild', age: 47, city: 'Quedlinburg', img: 'girl6.jpg' },
+      { name: 'Adelheid', age: 50, city: 'Celle', img: 'girl7.jpg' },
+      { name: 'Irmgard', age: 55, city: 'Goslar', img: 'girl8.jpg' },
+      { name: 'Hedwig', age: 48, city: 'Wernigerode', img: 'girl9.jpg' },
+      { name: 'Elfriede', age: 46, city: 'Stolberg', img: 'girl10.jpg' },
+      { name: 'Gerlinde', age: 52, city: 'Schwäbisch Hall', img: 'girl11.jpg' },
+      { name: 'Sieglinde', age: 54, city: 'Dinkelsbühl', img: 'girl12.jpg' },
+      { name: 'Brunhild', age: 50, city: 'Nördlingen', img: 'girl13.jpg' },
+      { name: 'Dietlinde', age: 47, city: 'Meersburg', img: 'girl14.jpg' },
+      { name: 'Sigrun', age: 49, city: 'Lindau', img: 'girl15.jpg' },
+      { name: 'Ingelore', age: 53, city: 'Konstanz', img: 'girl16.jpg' },
+      { name: 'Renate', age: 51, city: 'Freiburg', img: 'girl17.jpg' },
+      { name: 'Gisela', age: 48, city: 'Heidelberg', img: 'girl18.jpg' },
+      { name: 'Helga', age: 55, city: 'Speyer', img: 'girl19.jpg' },
+      { name: 'Ursula', age: 46, city: 'Worms', img: 'girl20.jpg' },
+      { name: 'Christa', age: 52, city: 'Mainz', img: 'girl21.jpg' },
+      { name: 'Brigitte', age: 54, city: 'Trier', img: 'girl22.jpg' },
+      { name: 'Monika', age: 50, city: 'Koblenz', img: 'girl23.jpg' },
+      { name: 'Petra', age: 47, city: 'Rüdesheim', img: 'girl24.jpg' },
+      { name: 'Sabine', age: 49, city: 'Baden-Baden', img: 'girl25.jpg' },
+      { name: 'Karin', age: 53, city: 'Freudenstadt', img: 'girl26.jpg' },
+      { name: 'Susanne', age: 51, city: 'Tübingen', img: 'girl27.jpg' },
+      { name: 'Andrea', age: 48, city: 'Reutlingen', img: 'girl28.jpg' },
+      { name: 'Martina', age: 52, city: 'Ulm', img: 'girl29.jpg' },
+      { name: 'Gabriele', age: 50, city: 'Augsburg', img: 'girl30.jpg' },
+      { name: 'Ute', age: 43, city: 'Regensburg', img: 'girl31.jpg' },
+      { name: 'Renate', age: 54, city: 'Ingolstadt', img: 'girl32.jpg' },
+      { name: 'Helga', age: 51, city: 'Landshut', img: 'girl33.jpg' },
+      { name: 'Ingrid', age: 45, city: 'Straubing', img: 'girl34.jpg' },
+      { name: 'Gisela', age: 53, city: 'Deggendorf', img: 'girl35.jpg' },
+      { name: 'Christa', age: 49, city: 'Cham', img: 'girl36.jpg' },
+      { name: 'Waltraud', age: 46, city: 'Weiden', img: 'girl37.jpg' },
+      { name: 'Elfriede', age: 50, city: 'Bayreuth', img: 'girl38.jpg' },
+      { name: 'Hildegard', age: 52, city: 'Hof', img: 'girl39.jpg' },
+      { name: 'Brigitte', age: 47, city: 'Coburg', img: 'girl40.jpg' },
+      { name: 'Ursula', age: 54, city: 'Schweinfurt', img: 'girl41.jpg' },
+      { name: 'Gerda', age: 48, city: 'Würzburg', img: 'girl42.jpg' },
+      { name: 'Erika', age: 51, city: 'Aschaffenburg', img: 'girl43.jpg' },
+      { name: 'Margot', age: 49, city: 'Fulda', img: 'girl44.jpg' },
+      { name: 'Ruth', age: 53, city: 'Gießen', img: 'girl45.jpg' },
+      { name: 'Edith', age: 46, city: 'Marburg', img: 'girl46.jpg' },
+      { name: 'Herta', age: 50, city: 'Kassel', img: 'girl47.jpg' },
+      { name: 'Lieselotte', age: 52, city: 'Göttingen', img: 'girl48.jpg' },
+      { name: 'Anneliese', age: 47, city: 'Hildesheim', img: 'girl49.jpg' },
+      { name: 'Frieda', age: 54, city: 'Salzgitter', img: 'girl50.jpg' },
+      { name: 'Gerda', age: 49, city: 'Wolfsburg', img: 'girl51.jpg' },
+      { name: 'Hannelore', age: 51, city: 'Braunschweig', img: 'girl52.jpg' },
+      { name: 'Ilse', age: 48, city: 'Hannover', img: 'girl53.jpg' },
+      { name: 'Jutta', age: 53, city: 'Lüneburg', img: 'girl54.jpg' },
+      { name: 'Karla', age: 46, city: 'Stade', img: 'girl55.jpg' },
+      { name: 'Lore', age: 50, city: 'Cuxhaven', img: 'girl56.jpg' },
+      { name: 'Margarete', age: 52, city: 'Bremerhaven', img: 'girl57.jpg' },
+      { name: 'Olga', age: 47, city: 'Oldenburg', img: 'girl58.jpg' },
+      { name: 'Paula', age: 54, city: 'Osnabrück', img: 'girl59.jpg' },
+      { name: 'Rita', age: 49, city: 'Münster', img: 'girl60.jpg' },
+      { name: 'Sonja', age: 51, city: 'Paderborn', img: 'girl61.jpg' },
+      { name: 'Traute', age: 48, city: 'Bielefeld', img: 'girl62.jpg' },
+      { name: 'Ulla', age: 53, city: 'Detmold', img: 'girl63.jpg' },
+      { name: 'Vera', age: 46, city: 'Minden', img: 'girl64.jpg' },
+      { name: 'Wilma', age: 50, city: 'Herford', img: 'girl65.jpg' },
+      { name: 'Xenia', age: 52, city: 'Gütersloh', img: 'girl66.jpg' },
+      { name: 'Yvonne', age: 47, city: 'Soest', img: 'girl67.jpg' },
+      { name: 'Zelda', age: 54, city: 'Arnsberg', img: 'girl68.jpg' },
+      { name: 'Alma', age: 49, city: 'Siegen', img: 'girl69.jpg' },
+      { name: 'Berta', age: 51, city: 'Bonn', img: 'girl70.jpg' },
+      { name: 'Clara', age: 48, city: 'Aachen', img: 'girl71.jpg' },
+      { name: 'Dora', age: 53, city: 'Düren', img: 'girl72.jpg' },
+      { name: 'Emma', age: 46, city: 'Euskirchen', img: 'girl73.jpg' },
+      { name: 'Flora', age: 50, city: 'Heinsberg', img: 'girl74.jpg' },
+      { name: 'Grete', age: 52, city: 'Mönchengladbach', img: 'girl75.jpg' },
+      { name: 'Hanna', age: 47, city: 'Krefeld', img: 'girl76.jpg' },
+      { name: 'Ida', age: 54, city: 'Viersen', img: 'girl77.jpg' },
+      { name: 'Johanna', age: 49, city: 'Kleve', img: 'girl78.jpg' },
+      { name: 'Klara', age: 51, city: 'Wesel', img: 'girl79.jpg' },
+      { name: 'Lina', age: 48, city: 'Recklinghausen', img: 'girl80.jpg' },
+      { name: 'Maria', age: 53, city: 'Gelsenkirchen', img: 'girl81.jpg' },
+      { name: 'Nora', age: 46, city: 'Essen', img: 'girl82.jpg' },
+      { name: 'Olga', age: 50, city: 'Duisburg', img: 'girl83.jpg' },
+      { name: 'Paula', age: 52, city: 'Mülheim', img: 'girl84.jpg' },
+      { name: 'Rosa', age: 47, city: 'Oberhausen', img: 'girl85.jpg' },
+      { name: 'Sofia', age: 54, city: 'Bottrop', img: 'girl86.jpg' },
+      { name: 'Thea', age: 49, city: 'Gladbeck', img: 'girl87.jpg' }
     ];
 
     // ===== GET UNIQUE RANDOM PROFILES =====
