@@ -623,10 +623,6 @@
       <h3 id="modalTitle">Profil ansehen</h3>
       <p>Bestätige, dass du über 18 bist, um die Verbindung fortzusetzen.</p>
       <button class="modal-btn" id="modalContinue">Ja, ich bin 18+ →</button>
-      <!-- ===== FB FALLBACK MESSAGE ===== -->
-      <p style="margin-top:15px;font-size:0.75rem;color:#888;text-align:center">
-        Falls es nicht funktioniert: Link kopieren und im Browser öffnen
-      </p>
     </div>
   </div>
 
@@ -823,30 +819,130 @@
       document.querySelectorAll('.testimonial-avatar').forEach(setupImageFadeIn);
     });
 
-    // ===== FACEBOOK/MOBILE DETECTION =====
-    function isFacebookBrowser() {
-      return /FBAN|FBAV|FB_IAB|Facebook/i.test(navigator.userAgent);
+    // ===== iOS + FACEBOOK DETECTION =====
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     }
     
-    function isMobile() {
-      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    function isFacebookApp() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return /FBAN|FBAV|FB_IAB|Facebook/i.test(ua);
+    }
+
+    // ===== FORCE OPEN IN SAFARI (iOS) =====
+    function openInSafari(url) {
+      // Erstelle unsichtbares iframe für iOS
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = url;
+      document.body.appendChild(iframe);
+      
+      // Versuche in neuem Fenster zu öffnen
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      
+      // Wenn nicht funktioniert - zeige Anleitung
+      setTimeout(() => {
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+          showOpenInstructions(url);
+        }
+        // iframe aufräumen
+        setTimeout(() => {
+          if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+          }
+        }, 100);
+      }, 500);
+    }
+    
+    function showOpenInstructions(url) {
+      // Erstelle schönes Modal mit Anleitung
+      const instructionsModal = document.createElement('div');
+      instructionsModal.style.cssText = `
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.95);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      `;
+      
+      instructionsModal.innerHTML = `
+        <div style="
+          background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+          border-radius: 20px;
+          padding: 40px 30px;
+          max-width: 400px;
+          text-align: center;
+          border: 2px solid #00c853;
+          box-shadow: 0 10px 50px rgba(0, 200, 83, 0.3);
+        ">
+          <div style="font-size: 3rem; margin-bottom: 20px;">📱</div>
+          <h3 style="color: #fff; margin-bottom: 15px; font-size: 1.5rem;">In Safari öffnen</h3>
+          <p style="color: #b0b0b0; margin-bottom: 25px; line-height: 1.6;">
+            Klicke auf den Button unten, um den Link in Safari zu öffnen
+          </p>
+          <a href="${url}" target="_blank" rel="noopener noreferrer" 
+             style="
+               display: inline-block;
+               padding: 15px 40px;
+               background: linear-gradient(135deg, #00c853, #00a844);
+               color: white;
+               text-decoration: none;
+               border-radius: 25px;
+               font-weight: 700;
+               font-size: 1.1rem;
+               margin-bottom: 15px;
+             ">
+            In Safari öffnen →
+          </a>
+          <p style="color: #888; font-size: 0.85rem; margin-top: 15px;">
+            Oder kopiere den Link und füge ihn manuell in Safari ein
+          </p>
+          <button onclick="this.closest('div').parentElement.remove()" 
+                  style="
+                    margin-top: 20px;
+                    background: transparent;
+                    border: none;
+                    color: #888;
+                    cursor: pointer;
+                    font-size: 0.9rem;
+                  ">
+            Schließen
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(instructionsModal);
     }
 
     // ===== AFFILIATE LINK HANDLER =====
     function prepareAffiliateLink() {
       const clickId = getClickId() || 'default';
-      // .trim() entfernt Leerzeichen am Anfang/Ende!
       const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId).trim();
       
-      // Funktion für sicheres Öffnen der Link
+      // Funktion zum Öffnen des Links
       const goToOffer = (link) => {
         console.log('Opening link:', link);
+        console.log('Is iOS:', isIOS());
+        console.log('Is Facebook:', isFacebookApp());
         
-        // Für Facebook Browser oder Mobile: Öffne in neuem Tab
-        if (isFacebookBrowser() || isMobile()) {
+        // Wenn iOS + Facebook App — öffne zwingend in Safari
+        if (isIOS() && isFacebookApp()) {
+          openInSafari(link);
+        } 
+        // Wenn nur iOS — öffne in neuem Fenster
+        else if (isIOS()) {
           window.open(link, '_blank', 'noopener,noreferrer');
-        } else {
-          // Für Desktop: Direkter Redirect
+        }
+        // Wenn Facebook auf Android
+        else if (isFacebookApp()) {
+          window.open(link, '_blank', 'noopener,noreferrer');
+        }
+        // Für alle anderen — direkter Redirect
+        else {
           window.location.href = link;
         }
       };
