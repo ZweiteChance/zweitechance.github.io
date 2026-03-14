@@ -84,8 +84,6 @@
       text-decoration: none;
       box-shadow: 0 8px 30px var(--accent-glow);
       transition: all 0.3s ease;
-      
-      /* ИСПРАВЛЕНИЕ: Курсор должен быть указателем для кнопок со ссылкой */
       cursor: pointer;
     }
     
@@ -231,8 +229,29 @@
       font-weight: 500;
     }
     
+    /* === КНОПКА С НОВЫМИ ЭЛЕМЕНТАМИ === */
+    .action-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tap-arrow-svg {
+      width: 24px;
+      height: 24px;
+      stroke: #ff3333; /* Красный цвет */
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 2px 4px rgba(255, 51, 51, 0.3));
+    }
+
     .profile-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 35px;
       background: linear-gradient(135deg, var(--accent-green), var(--accent-green-dark));
       color: white;
@@ -244,13 +263,23 @@
       text-decoration: none;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
+      min-width: 180px; /* Чтобы кнопки были одинаковые по ширине */
     }
     
     .profile-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0, 200, 83, 0.5);
     }
-    
+
+    .tap-instruction {
+      color: #ff3333 !important; /* Ярко-красный цвет текста */
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
     .more-profiles { text-align: center; margin: 45px 0 25px; }
     
     .more-btn {
@@ -487,12 +516,17 @@
       .profile-img { height: 480px; }
       .hero h1 { font-size: 2rem; }
       .hero-btn { padding: 14px 38px; font-size: 1rem; }
+      
+      /* Адаптация для мобильных - уменьшаем отступы */
+      .action-area { gap: 6px; }
+      .tap-instruction { font-size: 0.7rem; }
     }
     
     @media (max-width: 480px) {
       .profile-img { height: 450px; }
       .hero h1 { font-size: 1.6rem; }
       .testimonials-grid { grid-template-columns: 1fr; }
+      .tap-arrow-svg { width: 20px; height: 20px; }
     }
   </style>
 </head>
@@ -501,7 +535,6 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <h1>Finde deine große Liebe in deiner Nähe</h1>
-    <!-- Ссылка будет установлена через JS -->
     <a href="#" class="hero-btn" id="mainCta">Zweite Chance</a>
   </section>
 
@@ -735,11 +768,15 @@
       
       const loadingAttrText = index < 3 ? 'eager' : 'lazy';
 
-      // УБРАН БЛОК IOS OVERLAY
-      
-      // Кнопка профиля ведет сразу на оффер (поскольку мы убрали редирект)
+      // Обновленная логика кнопки с аркой и текстом
       const buttonLink = getFinalLinkFromProfile(`${profile.name}, ${profile.age}`);
       
+      // SVG Arrow Icon
+      const arrowSvg = `<svg class="tap-arrow-svg" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>`;
+      
+      // Instruction Text
+      const instructionText = `<div class="tap-instruction">HALTEN SIE FINGER AUF DRUCK!</div>`;
+
       card.innerHTML = `
         <div class="profile-img-container">
           
@@ -750,8 +787,13 @@
           <div class="profile-name">${profile.name}</div>
           <div class="profile-meta">${profile.age} Jahre • ${profile.city}</div>
           
-          <!-- Кнопка ведет прямо на оффер -->
-          <a href="${buttonLink}" class="profile-btn">Profil ansehen</a>
+          <!-- Action Area -->
+          <div class="action-area">
+            ${arrowSvg}
+            <a href="${buttonLink}" class="profile-btn">Profil ansehen</a>
+            ${instructionText}
+          </div>
+          
         </div>
       `;
       
@@ -810,7 +852,6 @@
       const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId).trim();
       
       // ВНИМАНИЕ: Главная кнопка теперь ведет НА ПРЯМУЮ ОФФЕР, а не #profiles
-      // Это значит, что длинный тап + "Открыть ссылку" будет вести на оффер
       if(mainCta) {
          mainCta.href = finalLink;
       }
@@ -818,7 +859,6 @@
       const goToOffer = (link) => {
         console.log('Opening link:', link);
         
-        // Для iOS внутри FB/IG лучше использовать window.open
         if (isIOSAppForLinks()) {
            window.open(link, '_blank', 'noopener,noreferrer');
         } else {
@@ -833,8 +873,6 @@
       };
       
       mainCta.onclick = (e) => {
-        // Превентим стандартный переход если нужно обработать иначе, но здесь ссылка уже настроена выше
-        // Если кнопка кликабельна как якорь, скрипт перехватит клик
         e.preventDefault(); 
         trackClick('hero_cta');
         goToOffer(AFFILIATE_LINK.replace('{click_id}', getClickId()));
