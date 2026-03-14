@@ -502,10 +502,8 @@
       font-size: 0.9rem;
     }
     
-    .ios-open-overlay:active {
-      transform: scale(0.98);
-      transition: 0.1s;
-    }
+    /* Hide overlay if not active */
+    .ios-open-overlay.hidden { display: none !important; }
 
     @media (max-width: 1024px) {
       .profiles-grid {
@@ -770,9 +768,9 @@
       
       const loadingAttr = index < 3 ? 'eager' : 'lazy';
       
-      // IOS OVERLAY HTML (если нужно показать)
+      // IOS OVERLAY HTML (nur wenn iOS+App erkannt wurde)
       const iosOverlayHtml = window.isIOSAppForLinks() ? `
-        <div class="ios-open-overlay" onclick="${escapeJSFunction('openLinkNow', `'${profile.name}, ${profile.age}', 'images/${profile.img}'`)};">
+        <a href="${AFFILIATE_LINK.replace('{click_id}', getClickId())}" class="ios-open-overlay">
           <div class="instruction">HALTEN SIE FINGER<br>AUF DRUCK!</div>
           <div class="icon-wrapper">
             <svg class="print-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -782,7 +780,7 @@
             </svg>
           </div>
           <div class="hint">DRÜCKEN & HOLDEN</div>
-        </div>
+        </a>
       ` : '';
 
       card.innerHTML = `
@@ -802,7 +800,7 @@
       setupImageFadeIn(img);
       
       card.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('profile-btn') && !e.target.closest('.ios-open-overlay')) {
+        if (!e.target.classList.contains('profile-btn')) {
           openModal(`${profile.name}, ${profile.age}`, `images/${profile.img}`);
         }
       });
@@ -831,59 +829,17 @@
       document.querySelectorAll('.testimonial-avatar').forEach(setupImageFadeIn);
     });
 
-    // ===== CHECK IF USER IS IN APP BROWSER =====
+    // ===== STRICT CHECK FOR iOS WEBVIEW =====
     function isIOSAppForLinks() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
       const isFB = /FBAN|FBAV|FB_IAB|Facebook/i.test(ua);
       const isIG = /Instagram/i.test(ua);
       
-      console.log("Detection:", { isIOS, isFB, isIG });
+      // Log only in console if you want to see results
+      // console.log("Detection:", { isIOS, isFB, isIG, result: isIOS && (isFB || isIG) });
+      
       return isIOS && (isFB || isIG);
-    }
-
-    // HELPER FOR ESCAPING FUNCTION NAME IN HTML
-    function escapeJSFunction(funcName, args) {
-       return funcName.replace(/'/g, "\\'") + '(' + args + ')';
-    }
-
-    // EXPOSE GLOBAL FUNCTION FOR CLICK HANDLER
-    window.openLinkNow = function(profileName, profileImg) {
-       const link = getFinalLinkFromProfile(profileName);
-       console.log('Opening link manually:', link);
-       
-       // Try to open in new tab/window
-       const newWindow = window.open(link, '_blank', 'noopener,noreferrer');
-       
-       // Fallback for stricter iOS
-       if(!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined'){
-         showModalWithLink(link);
-       }
-    };
-
-    function getFinalLinkFromProfile(profileName) {
-      const clickId = getClickId() || 'default';
-      return AFFILIATE_LINK.replace('{click_id}', clickId);
-    }
-
-    function showModalWithLink(url) {
-       const overlay = document.createElement('div');
-       overlay.style.cssText = `
-         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-         background: rgba(0,0,0,0.95); z-index: 9999;
-         display: flex; align-items: center; justify-content: center;
-         padding: 20px; font-family: sans-serif;
-       `;
-       overlay.innerHTML = `
-         <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border-radius: 20px; padding: 40px 30px; max-width: 400px; text-align: center; border: 2px solid #00c853; box-shadow: 0 10px 50px rgba(0, 200, 83, 0.3);">
-           <h3 style="color: #fff; margin-bottom: 15px;">ÖFFNEN IM BROWSER</h3>
-           <p style="color: #b0b0b0; margin-bottom: 25px;">Bitte drücke unten auf den Button, um im Browser zu öffnen.</p>
-           <a href="${url}" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:15px 40px; background:linear-gradient(135deg, #00c853, #00a844); color:white; text-decoration:none; border-radius:25px; font-weight:700; margin-bottom:15px;">Im Browser öffnen →</a>
-           <br>
-           <button onclick="this.parentElement.parentElement.remove()" style="margin-top:20px; background:transparent; border:none; color:#888; cursor:pointer;">Schließen</button>
-         </div>
-       `;
-       document.body.appendChild(overlay);
     }
 
     // ===== AFFILIATE LINK HANDLER =====
@@ -894,31 +850,33 @@
       const goToOffer = (link) => {
         console.log('Opening link:', link);
         
-        // Wenn iOS + App Browser — spezielle Behandlung
-        if (window.isIOSAppForLinks()) {
-          // Wir lassen den normalen Klick passieren, der Overlay hat das Event gehandhabt
-          // Für andere Aktionen können wir hier Logik einfügen
+        // Für iOS + App Browser — spezielle Behandlung durch Overlay-Aktionen
+        // Hier passiert nichts Besonderes mehr, da das Overlay den Klick verarbeitet hat
+        
+        // Wenn es kein iOS/WebView ist -> normaler Redirect
+        if (!isIOSAppForLinks()) {
+           window.location.href = finalLink;
         } else {
-          // Normaler Redirect
-          window.location.href = link;
+          // Falls es doch ein direkter Klick war (nicht Overlay) -> neue Seite
+          window.open(finalLink, '_blank', 'noopener,noreferrer');
         }
       };
       
       modalContinue.onclick = () => {
         trackClick('modal_continue');
-        goToOffer(finalLink);
+        goToOffer(AFFILIATE_LINK.replace('{click_id}', getClickId()));
       };
       
       mainCta.onclick = (e) => {
         e.preventDefault();
         trackClick('hero_cta');
-        goToOffer(finalLink);
+        goToOffer(AFFILIATE_LINK.replace('{click_id}', getClickId()));
       };
       
       moreProfilesBtn.onclick = (e) => {
         e.preventDefault();
         trackClick('more_profiles');
-        goToOffer(finalLink);
+        goToOffer(AFFILIATE_LINK.replace('{click_id}', getClickId()));
       };
     }
 
