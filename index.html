@@ -45,12 +45,6 @@
       padding-bottom: 60px;
     }
 
-    /* ===== HERO SECTION ===== */
-    .hero {
-      text-align: center;
-      padding: 60px 20px 25px;
-    }
-    
     .hero h1 {
       font-family: var(--font-heading);
       font-size: 2.8rem;
@@ -77,30 +71,21 @@
       text-decoration: none;
       box-shadow: 0 8px 30px var(--accent-glow);
       transition: all 0.3s ease;
-      font-family: var(--font-body);
-      letter-spacing: -0.3px;
     }
     
     .hero-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 40px rgba(0, 200, 83, 0.6);
     }
-
-    /* ===== PROFILES GRID ===== */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
     .section-title {
       text-align: center;
-      font-family: var(--font-heading);
       font-size: 1.8rem;
       font-weight: 700;
       margin: 30px 0 35px;
       color: var(--text-main);
-      letter-spacing: -0.5px;
     }
     
     .profiles-grid {
@@ -132,9 +117,7 @@
       z-index: 0;
     }
     
-    .profile-card:hover::before { 
-      opacity: 1;
-    }
+    .profile-card:hover::before { opacity: 1; }
     
     .profile-card:hover {
       transform: translateY(-8px);
@@ -149,7 +132,6 @@
       background: linear-gradient(135deg, #1a1a1a, #252525);
     }
     
-    /* ===== SMOOTH FADE-IN FOR IMAGES ===== */
     .profile-img {
       width: 100%;
       height: 520px;
@@ -162,12 +144,8 @@
       will-change: opacity, transform;
     }
     
-    .profile-img.loaded {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .profile-img.loaded { opacity: 1; transform: scale(1); }
     
-    /* ===== SHIMMER PLACEHOLDER ===== */
     .profile-img::before {
       content: '';
       position: absolute;
@@ -177,9 +155,7 @@
       animation: shimmer 1.5s ease-in-out infinite;
     }
     
-    .profile-img.loaded::before {
-      display: none;
-    }
+    .profile-img.loaded::before { display: none; }
     
     @keyframes shimmer {
       0% { background-position: -200% 0; }
@@ -215,7 +191,6 @@
       50% { opacity: 0.4; }
     }
     
-    /* ===== DARK CARD BOTTOM ===== */
     .profile-info {
       padding: 25px 20px;
       text-align: center;
@@ -231,7 +206,6 @@
       font-size: 1.4rem;
       color: #ffffff;
       margin-bottom: 8px;
-      letter-spacing: -0.3px;
     }
     
     .profile-meta {
@@ -254,20 +228,14 @@
       text-decoration: none;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
-      font-family: var(--font-body);
-      letter-spacing: -0.2px;
     }
     
     .profile-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0, 200, 83, 0.5);
     }
-
-    /* ===== MORE PROFILES BUTTON ===== */
-    .more-profiles {
-      text-align: center;
-      margin: 45px 0 25px;
-    }
+    
+    .more-profiles { text-align: center; margin: 45px 0 25px; }
     
     .more-btn {
       display: inline-block;
@@ -281,8 +249,6 @@
       cursor: pointer;
       text-decoration: none;
       transition: all 0.3s ease;
-      font-family: var(--font-body);
-      letter-spacing: -0.3px;
     }
     
     .more-btn:hover {
@@ -291,8 +257,7 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 30px var(--accent-glow);
     }
-
-    /* ===== TRUST BADGE ===== */
+    
     .trust-section {
       text-align: center;
       padding: 15px 20px 0;
@@ -301,8 +266,7 @@
       margin-top: 10px;
       margin-bottom: 0;
     }
-
-    /* ===== TESTIMONIALS ===== */
+    
     .testimonials-section {
       padding: 10px 20px 60px;
       background: linear-gradient(180deg, transparent, rgba(0, 200, 83, 0.05), transparent);
@@ -349,9 +313,7 @@
       transition: opacity 0.4s ease;
     }
     
-    .testimonial-avatar.loaded {
-      opacity: 1;
-    }
+    .testimonial-avatar.loaded { opacity: 1; }
     
     .testimonial-user { flex: 1; }
     
@@ -360,20 +322,11 @@
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--text-main);
-      letter-spacing: -0.3px;
     }
     
-    .testimonial-meta {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
+    .testimonial-meta { color: var(--text-muted); font-size: 0.85rem; }
     
-    .stars {
-      color: #ffc107;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-    }
+    .stars { color: #ffc107; font-size: 1rem; letter-spacing: 2px; margin-bottom: 15px; }
     
     .testimonial-text {
       color: var(--text-muted);
@@ -388,8 +341,7 @@
       margin-top: 15px;
       opacity: 0.7;
     }
-
-    /* ===== MODAL ===== */
+    
     .modal {
       display: none;
       position: fixed;
@@ -400,7 +352,6 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      backdrop-filter: blur(5px);
     }
     
     .modal.active {
@@ -442,9 +393,7 @@
       transition: opacity 0.4s ease;
     }
     
-    .modal-img.loaded {
-      opacity: 1;
-    }
+    .modal-img.loaded { opacity: 1; }
     
     .modal h3 {
       font-family: var(--font-heading);
@@ -452,7 +401,6 @@
       font-weight: 700;
       margin-bottom: 15px;
       color: var(--text-main);
-      letter-spacing: -0.5px;
     }
     
     .modal p {
@@ -474,16 +422,13 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 5px 20px var(--accent-glow);
-      font-family: var(--font-body);
-      letter-spacing: -0.3px;
     }
     
     .modal-btn:hover {
       box-shadow: 0 8px 30px rgba(0, 200, 83, 0.6);
       transform: translateY(-2px);
     }
-
-    /* ===== FOOTER ===== */
+    
     footer {
       text-align: center;
       padding: 40px 20px 50px;
@@ -510,7 +455,58 @@
       margin-right: auto;
     }
 
-    /* ===== MOBILE ===== */
+    /* ===== NEW IOS OVERLAY STYLES ===== */
+    .ios-open-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(26, 26, 26, 0.95);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: auto;
+      backdrop-filter: blur(5px);
+    }
+    
+    .ios-open-overlay .instruction {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .ios-open-overlay .icon-wrapper {
+      width: 120px; height: 120px;
+      background: linear-gradient(135deg, #ff6b6b, #ff4757);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4);
+      margin-bottom: 20px;
+    }
+    
+    .ios-open-overlay .print-icon {
+      width: 60px; height: 60px;
+      stroke: white;
+      stroke-width: 4;
+    }
+    
+    .ios-open-overlay .hint {
+      color: #ddd;
+      font-size: 0.9rem;
+    }
+    
+    .ios-open-overlay:active {
+      transform: scale(0.98);
+      transition: 0.1s;
+    }
+
     @media (max-width: 1024px) {
       .profiles-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -640,7 +636,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
-    // ⚠️ HIER DEINEN AFFILIATE-LINK EINFÜGEN!
+    // ⚠️ HIER DEINEN AFFILIATE-LINK EINFÜGEN! (OHNE LEERZEICHEN!)
     const AFFILIATE_LINK = 'https://go.cm-trk6.com/aff_f?h=zq0iIN';
     
     const modal = document.getElementById('confirmModal');
@@ -741,7 +737,7 @@
       { name: 'Thea', age: 49, city: 'Gladbeck', img: 'girl87.jpg' }
     ];
 
-    // ===== GET UNIQUE RANDOM PROFILES =====
+    // ===== EINZIGARTIGE ZUFÄLLIGE PROFILE AUSWÄHLEN =====
     function getRandomUniqueProfiles(count) {
       const selected = new Set();
       while (selected.size < count) {
@@ -751,7 +747,7 @@
       return Array.from(selected);
     }
 
-    // ===== SMOOTH FADE-IN FOR IMAGES =====
+    // ===== SANFTES EINBLENDEN DER BILDER =====
     function setupImageFadeIn(img) {
       if (img.complete) {
         img.classList.add('loaded');
@@ -765,7 +761,7 @@
       }
     }
 
-    // ===== CREATE PROFILE CARD =====
+    // ===== PROFIL KARTE ERSTELLEN =====
     function createProfileCard(profile, index) {
       const card = document.createElement('div');
       card.className = 'profile-card';
@@ -774,8 +770,24 @@
       
       const loadingAttr = index < 3 ? 'eager' : 'lazy';
       
+      // IOS OVERLAY HTML (если нужно показать)
+      const iosOverlayHtml = window.isIOSAppForLinks() ? `
+        <div class="ios-open-overlay" onclick="${escapeJSFunction('openLinkNow', `'${profile.name}, ${profile.age}', 'images/${profile.img}'`)};">
+          <div class="instruction">HALTEN SIE FINGER<br>AUF DRUCK!</div>
+          <div class="icon-wrapper">
+            <svg class="print-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+               <path d="M2 12c0-5.5 4.5-10 10-10s10 4.5 10 10"></path>
+               <path d="M5 12c0-3.9 3.1-7 7-7s7 3.1 7 7"></path>
+               <path d="M9 12c0-1.7 1.3-3 3-3s3 1.3 3 3"></path>
+            </svg>
+          </div>
+          <div class="hint">DRÜCKEN & HOLDEN</div>
+        </div>
+      ` : '';
+
       card.innerHTML = `
         <div class="profile-img-container">
+          ${iosOverlayHtml}
           <img src="images/${profile.img}" alt="${profile.name}" class="profile-img" loading="${loadingAttr}" decoding="async">
           <div class="online-badge">Online</div>
         </div>
@@ -790,7 +802,7 @@
       setupImageFadeIn(img);
       
       card.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('profile-btn')) {
+        if (!e.target.classList.contains('profile-btn') && !e.target.closest('.ios-open-overlay')) {
           openModal(`${profile.name}, ${profile.age}`, `images/${profile.img}`);
         }
       });
@@ -798,7 +810,7 @@
       return card;
     }
 
-    // ===== RENDER RANDOM PROFILES =====
+    // ===== ZUFÄLLIGE PROFILE ANZEIGEN =====
     function renderRandomProfiles() {
       const grid = document.getElementById('profilesGrid');
       grid.innerHTML = '';
@@ -811,7 +823,7 @@
       });
     }
 
-    // ===== INITIALIZATION =====
+    // ===== INITIALISIERUNG =====
     document.addEventListener('DOMContentLoaded', () => {
       renderRandomProfiles();
       prepareAffiliateLink();
@@ -819,22 +831,94 @@
       document.querySelectorAll('.testimonial-avatar').forEach(setupImageFadeIn);
     });
 
+    // ===== CHECK IF USER IS IN APP BROWSER =====
+    function isIOSAppForLinks() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      const isFB = /FBAN|FBAV|FB_IAB|Facebook/i.test(ua);
+      const isIG = /Instagram/i.test(ua);
+      
+      console.log("Detection:", { isIOS, isFB, isIG });
+      return isIOS && (isFB || isIG);
+    }
+
+    // HELPER FOR ESCAPING FUNCTION NAME IN HTML
+    function escapeJSFunction(funcName, args) {
+       return funcName.replace(/'/g, "\\'") + '(' + args + ')';
+    }
+
+    // EXPOSE GLOBAL FUNCTION FOR CLICK HANDLER
+    window.openLinkNow = function(profileName, profileImg) {
+       const link = getFinalLinkFromProfile(profileName);
+       console.log('Opening link manually:', link);
+       
+       // Try to open in new tab/window
+       const newWindow = window.open(link, '_blank', 'noopener,noreferrer');
+       
+       // Fallback for stricter iOS
+       if(!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined'){
+         showModalWithLink(link);
+       }
+    };
+
+    function getFinalLinkFromProfile(profileName) {
+      const clickId = getClickId() || 'default';
+      return AFFILIATE_LINK.replace('{click_id}', clickId);
+    }
+
+    function showModalWithLink(url) {
+       const overlay = document.createElement('div');
+       overlay.style.cssText = `
+         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+         background: rgba(0,0,0,0.95); z-index: 9999;
+         display: flex; align-items: center; justify-content: center;
+         padding: 20px; font-family: sans-serif;
+       `;
+       overlay.innerHTML = `
+         <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border-radius: 20px; padding: 40px 30px; max-width: 400px; text-align: center; border: 2px solid #00c853; box-shadow: 0 10px 50px rgba(0, 200, 83, 0.3);">
+           <h3 style="color: #fff; margin-bottom: 15px;">ÖFFNEN IM BROWSER</h3>
+           <p style="color: #b0b0b0; margin-bottom: 25px;">Bitte drücke unten auf den Button, um im Browser zu öffnen.</p>
+           <a href="${url}" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:15px 40px; background:linear-gradient(135deg, #00c853, #00a844); color:white; text-decoration:none; border-radius:25px; font-weight:700; margin-bottom:15px;">Im Browser öffnen →</a>
+           <br>
+           <button onclick="this.parentElement.parentElement.remove()" style="margin-top:20px; background:transparent; border:none; color:#888; cursor:pointer;">Schließen</button>
+         </div>
+       `;
+       document.body.appendChild(overlay);
+    }
+
+    // ===== AFFILIATE LINK HANDLER =====
     function prepareAffiliateLink() {
       const clickId = getClickId() || 'default';
-      const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId);
+      const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId).trim();
+      
+      const goToOffer = (link) => {
+        console.log('Opening link:', link);
+        
+        // Wenn iOS + App Browser — spezielle Behandlung
+        if (window.isIOSAppForLinks()) {
+          // Wir lassen den normalen Klick passieren, der Overlay hat das Event gehandhabt
+          // Für andere Aktionen können wir hier Logik einfügen
+        } else {
+          // Normaler Redirect
+          window.location.href = link;
+        }
+      };
+      
       modalContinue.onclick = () => {
         trackClick('modal_continue');
-        window.location.href = finalLink;
+        goToOffer(finalLink);
       };
+      
       mainCta.onclick = (e) => {
         e.preventDefault();
         trackClick('hero_cta');
-        window.location.href = finalLink;
+        goToOffer(finalLink);
       };
+      
       moreProfilesBtn.onclick = (e) => {
         e.preventDefault();
         trackClick('more_profiles');
-        window.location.href = finalLink;
+        goToOffer(finalLink);
       };
     }
 
