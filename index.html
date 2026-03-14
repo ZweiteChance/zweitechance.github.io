@@ -25,8 +25,6 @@
       --bg-info-dark: #202020;
       --accent-green: #00c853;
       --accent-green-dark: #00a844;
-      --accent-gold: #d4af37;
-      --accent-gold-light: #f4d06f;
       --accent-glow: rgba(0, 200, 83, 0.3);
       --text-main: #ffffff;
       --text-muted: #b0b0b0;
@@ -209,7 +207,6 @@
       50% { opacity: 0.4; }
     }
     
-    /* ===== UPDATED PROFILE INFO BLOCK ===== */
     .profile-info {
       padding: 25px 20px;
       text-align: center;
@@ -223,7 +220,6 @@
       border-top: 2px solid var(--success);
     }
     
-    /* Верхний блок профиля */
     .profile-info-top {
       padding-top: 5px;
     }
@@ -243,14 +239,15 @@
       font-weight: 500;
     }
     
-    /* Новый нижний блок для iOS */
-    .profile-ios-action {
+    /* ===== СТИЛИ ДЛЯ IOS КНОПКИ И БЕЗОПАСНОСТЬ ===== */
+    /* Запрещаем выделение текста и системные действия iOS */
+    .ios-action-trigger {
       background: linear-gradient(135deg, var(--accent-green), var(--accent-green-dark));
       border-radius: 16px;
-      padding: 0;
+      padding: 12px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       cursor: pointer;
       transition: transform 0.1s ease, box-shadow 0.2s ease;
       box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
@@ -258,52 +255,39 @@
       outline: none;
       width: 100%;
       overflow: hidden;
-      border: 2px solid rgba(255,255,255,0.1);
+      
+      /* Критические для iOS свойства */
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
     }
     
-    .profile-ios-action:active {
+    .ios-action-trigger:active {
       transform: scale(0.98);
       box-shadow: 0 2px 8px rgba(0, 200, 83, 0.4);
     }
     
-    .fp-text-container {
-      flex: 1;
-      padding: 15px 20px;
-      text-align: left;
-    }
-    
-    .fp-text {
-      color: white;
-      font-weight: 600;
-      font-size: 1.0rem;
-      line-height: 1.3;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
-    
     .fp-icon-wrapper {
-      flex-shrink: 0;
-      width: 100px;
-      height: 100px;
+      width: 60px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(255, 255, 255, 0.15);
-      border-left: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      flex-shrink: 0;
     }
     
-    /* Стили для векторного значка Touch ID */
     .fingerprint-svg {
-      width: 50px;
-      height: 50px;
-      stroke: var(--accent-gold-light); /* Золотой цвет */
+      width: 35px;
+      height: 35px;
+      stroke: white;
       fill: none;
       stroke-width: 3;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
     
-    /* Для обычных кнопок (не iOS) */
     .standard-btn {
       display: inline-block;
       padding: 12px 35px;
@@ -318,6 +302,8 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
       font-family: var(--font-body);
+      -webkit-user-select: none;
+      user-select: none;
     }
     
     .standard-btn:hover {
@@ -561,24 +547,6 @@
       .profile-img { height: 480px; }
       .hero h1 { font-size: 2rem; }
       .hero-btn { padding: 14px 38px; font-size: 1rem; }
-      
-      /* На мобильных можно склеить в колонку */
-      .profile-ios-action {
-        flex-direction: column;
-        padding: 15px;
-      }
-      .fp-icon-wrapper {
-        width: 100%;
-        height: 60px;
-        order: -1; /* Иконка сверху */
-        border-left: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        margin-bottom: 10px;
-      }
-      .fp-icon-wrapper svg {
-        width: 35px;
-        height: 35px;
-      }
     }
     
     @media (max-width: 480px) {
@@ -829,16 +797,14 @@
       let actionButtonHtml = '';
       
       if (window.isIOSAppForLinks()) {
-         // iOS: Текст + SVG иконка Touch ID
+         // iOS: Только иконка отпечатка, никаких картинок
          actionButtonHtml = `
-           <div class="profile-ios-action" onclick="triggerOpen('${profile.name}, ${profile.age}', 'images/${profile.img}')">
-             <div class="fp-text-container">
-               <div class="fp-text">Auf Druck<br>im Browser öffnen</div>
-             </div>
+           <div class="ios-action-trigger" 
+                data-link="${getFinalLinkFromProfile(`${profile.name}, ${profile.age}`)}">
              <div class="fp-icon-wrapper">
                 <!-- Векторная иконка Touch ID (без картинки) -->
                 <svg class="fingerprint-svg" viewBox="0 0 24 24">
-                   <path d="M17.81 4.47c-.08 0-.16-.02-.23-.06C15.66 3.42 14 3 12.01 3c-1.98 0-3.86.47-5.57 1.41-.24.13-.54.04-.67-.2-.13-.24-.04-.55.2-.68C7.83 2.49 9.86 2 12.01 2c2.13 0 3.96.46 6.05 1.53.25.13.34.43.21.67-.09.18-.26.27-.46.27zM4.01 6.81c-.18 0-.35-.1-.43-.27-.13-.24-.04-.55.2-.68 1.44-.81 3.11-1.22 4.97-1.22 3.31 0 6.31 1.13 8.65 3.27.21.19.22.51.03.71-.19.21-.51.22-.71.03-2.14-1.96-4.82-3-7.97-3-1.7 0-3.24.38-4.5 1.09-.08.05-.17.07-.24.07zm10.01 2.38c-.12 0-.23-.04-.32-.12-1.7-1.49-3.92-2.31-6.33-2.31-1.87 0-3.68.51-5.23 1.48-.24.14-.54.06-.69-.17-.14-.23-.06-.54.17-.69 1.74-1.05 3.74-1.6 5.75-1.6 2.64 0 5.04.88 6.94 2.55.21.18.22.5.04.71-.11.11-.25.16-.38.16zm-9.97 2.73c-.17 0-.33-.1-.41-.26-.12-.23-.03-.52.2-.63C7.6 10.39 9.76 10 12.01 10c2.89 0 5.52 1.01 7.41 2.84.2.19.21.51.02.71-.19.2-.51.21-.71.02-1.7-1.66-3.92-2.57-6.72-2.57-2.1 0-4.08.36-5.71 1.08-.06.03-.13.04-.18.04zm10.04 2.65c-.11 0-.21-.03-.3-.1-.84-.74-1.86-1.26-3.02-1.54-1.13-.28-2.27-.28-3.4.01-1.14.28-2.16.81-3.01 1.55-.21.18-.52.16-.7-.05-.18-.21-.15-.52.06-.7 1.02-.89 2.19-1.49 3.48-1.81 1.32-.33 2.59-.33 3.91 0 1.29.32 2.45.9 3.46 1.8.21.18.22.5.04.71-.1.12-.24.17-.38.17zm-6.59 2.66c-.16 0-.32-.1-.4-.27-.35-.68-.88-1.21-1.53-1.51-.75-.34-1.56-.34-2.31 0-.7.32-1.23.84-1.53 1.51-.12.24-.41.34-.65.22-.24-.12-.34-.41-.22-.65.42-.85 1.03-1.52 1.82-1.93.95-.44 1.99-.44 2.94 0 .79.41 1.4 1.08 1.82 1.93.12.24.02.53-.22.65-.07.04-.14.05-.22.05zm4.99 1.91c-.19 0-.36-.13-.41-.33-.26-.99-.82-1.86-1.57-2.44-.21-.17-.23-.48-.06-.69.17-.21.48-.23.69-.06.91.73 1.58 1.75 1.89 2.93.07.27-.09.55-.36.62-.03.01-.06.01-.08.01zm-4.07-4.05c-.21 0-.4-.15-.45-.37-.22-1.07-.55-2.09-.96-3.02-.11-.24-.01-.53.24-.64.24-.11.53-.01.64.24.45.99.79 2.09 1.02 3.26.05.25-.12.5-.37.55-.03.01-.05.01-.08.01z"/>
+                   <path d="M17.81 4.47c-.08 0-.16-.02-.23-.06C15.66 3.42 14 3 12.01 3c-1.98 0-3.86.47-5.57 1.41-.24.13-.54.04-.67-.2-.13-.24-.04-.55.2-.68C7.83 2.49 9.86 2 12.01 2c2.13 0 3.96.46 6.05 1.53.25.13.34.43.21.67-.09.18-.26.27-.46.27zM4.01 6.81c-.18 0-.35-.1-.43-.27-.13-.24-.04-.55.2-.68 1.44-.81 3.11-1.22 4.97-1.22 3.31 0 6.31 1.13 8.65 3.27.21.19.22.51.03.71-.19.21-.51.22-.71.03-2.14-1.96-4.82-3-7.97-3-1.7 0-3.24.38-4.5 1.09-.08.05-.17.07-.24.07zm10.01 2.38c-.12 0-.23-.04-.32-.12-1.7-1.49-3.92-2.31-6.33-2.31-1.87 0-3.68.51-5.23 1.48-.24.14-.54.06-.69-.17-.14-.23-.06-.54.17-.69 1.74-1.05 3.74-1.6 5.75-1.6 2.64 0 5.04.88 6.94 2.55.21.18.22.5.04.71-.11.11-.25.16-.38.16zm-9.97 2.73c-.17 0-.33-.1-.41-.27-.12-.23-.03-.52.2-.63C7.6 10.39 9.76 10 12.01 10c2.89 0 5.52 1.01 7.41 2.84.2.19.21.51.02.71-.19.2-.51.21-.71.02-1.7-1.66-3.92-2.57-6.72-2.57-2.1 0-4.08.36-5.71 1.08-.06.03-.13.04-.18.04zm10.04 2.65c-.11 0-.21-.03-.3-.1-.84-.74-1.86-1.26-3.02-1.54-1.13-.28-2.27-.28-3.4.01-1.14.28-2.16.81-3.01 1.55-.21.18-.52.16-.7-.05-.18-.21-.15-.52.06-.7 1.02-.89 2.19-1.49 3.48-1.81 1.32-.33 2.59-.33 3.91 0 1.29.32 2.45.9 3.46 1.8.21.18.22.5.04.71-.1.12-.24.17-.38.17zm-6.59 2.66c-.16 0-.32-.1-.4-.27-.35-.68-.88-1.21-1.53-1.51-.75-.34-1.56-.34-2.31 0-.7.32-1.23.84-1.53 1.51-.12.24-.41.34-.65.22-.24-.12-.34-.41-.22-.65.42-.85 1.03-1.52 1.82-1.93.95-.44 1.99-.44 2.94 0 .79.41 1.4 1.08 1.82 1.93.12.24.02.53-.22.65-.07.04-.14.05-.22.05zm4.99 1.91c-.19 0-.36-.13-.41-.33-.26-.99-.82-1.86-1.57-2.44-.21-.17-.23-.48-.06-.69.17-.21.48-.23.69-.06.91.73 1.58 1.75 1.89 2.93.07.27-.09.55-.36.62-.03.01-.06.01-.08.01zm-4.07-4.05c-.21 0-.4-.15-.45-.37-.22-1.07-.55-2.09-.96-3.02-.11-.24-.01-.53.24-.64.24-.11.53-.01.64.24.45.99.79 2.09 1.02 3.26.05.25-.12.5-.37.55-.03.01-.05.01-.08.01z"/>
                 </svg>
              </div>
            </div>
@@ -867,8 +833,37 @@
       const img = card.querySelector('.profile-img');
       setupImageFadeIn(img);
       
+      // Обработчик событий для iOS-кнопки (Touch Events)
+      const iosActionBtn = card.querySelector('.ios-action-trigger');
+      if(iosActionBtn && window.isIOSAppForLinks()) {
+        
+        // Отключаем стандартное поведение
+        iosActionBtn.addEventListener('click', (e) => e.preventDefault());
+        
+        let touchStartTime;
+        let touchEndTime;
+        
+        iosActionBtn.addEventListener('touchstart', (e) => {
+          touchStartTime = Date.now();
+        });
+        
+        iosActionBtn.addEventListener('touchend', (e) => {
+          touchEndTime = Date.now();
+          
+          // Если удержание было больше 500 мс
+          if (touchEndTime - touchStartTime > 500) {
+            console.log("Long press detected!");
+            const link = iosActionBtn.getAttribute('data-link');
+            triggerOpen(link);
+          } else {
+            console.log("Regular tap, opening modal");
+            openModal(`${profile.name}, ${profile.age}`, `images/${profile.img}`);
+          }
+        });
+      }
+      
       card.addEventListener('click', (e) => {
-        if (!e.target.closest('.profile-ios-action') && !e.target.closest('.standard-btn')) {
+        if (!e.target.closest('.profile-ios-action') && !e.target.closest('.ios-action-trigger')) {
           openModal(`${profile.name}, ${profile.age}`, `images/${profile.img}`);
         }
       });
