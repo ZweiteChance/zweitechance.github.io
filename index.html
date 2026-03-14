@@ -235,14 +235,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 8px; /* Чуть больше расстояние */
     }
     
     .tap-arrow-svg {
-      width: 18px;
-      height: 18px;
+      width: 28px; /* БОЛЬШЕ чем было */
+      height: 28px;
       stroke: var(--alert-red); /* Яркий красный */
-      stroke-width: 3; /* Чуть жирнее */
+      stroke-width: 5; /* ТОЛЩЕ линия */
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -274,11 +274,11 @@
 
     .tap-instruction {
       color: var(--alert-red) !important; /* Яркий красный текст */
-      font-size: 0.75rem;
-      font-weight: bold;
+      font-size: 1.1rem; /* БОЛЬШЕ шрифт */
+      font-weight: 900; /* ЖИРНЫЙ текст */
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-top: 0px; /* Чуть ближе к кнопке */
+      margin-top: 5px; /* Чуть ближе к кнопке */
       text-align: center;
       line-height: 1.2;
     }
@@ -288,18 +288,18 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px;
     }
 
     .hero-tap-arrow-svg {
-      width: 20px;
-      height: 20px;
+      width: 32px; /* Очень большая стрелка сверху */
+      height: 32px;
       stroke: var(--alert-red);
-      stroke-width: 3;
+      stroke-width: 5;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
       filter: drop-shadow(0 2px 2px rgba(255, 51, 51, 0.4));
+      margin-bottom: 10px; /* Расстояние от стрелки до кнопки */
     }
 
     .more-profiles { text-align: center; margin: 45px 0 25px; }
@@ -540,16 +540,15 @@
       .hero-btn { padding: 14px 38px; font-size: 1rem; }
       
       /* Адаптация для мобильных */
-      .tap-instruction { font-size: 0.7rem; }
-      .tap-arrow-svg { width: 16px; height: 16px; }
-      .hero-tap-arrow-svg { width: 16px; height: 16px; }
+      .tap-instruction { font-size: 1rem; } /* Уменьшаем немного но оставляем крупным */
+      .tap-arrow-svg { width: 20px; height: 20px; }
+      .hero-tap-arrow-svg { width: 20px; height: 20px; }
     }
     
     @media (max-width: 480px) {
       .profile-img { height: 450px; }
       .hero h1 { font-size: 1.6rem; }
       .testimonials-grid { grid-template-columns: 1fr; }
-      .tap-instruction { font-size: 0.65rem; }
     }
   </style>
 </head>
@@ -786,7 +785,7 @@
       }
     }
 
-    // ===== PROFIL KARTE ERSTELLEN =====
+    // ===== PROFIL KARTE ERСТELLEN =====
     function createProfileCard(profile, index) {
       const card = document.createElement('div');
       card.className = 'profile-card';
@@ -891,18 +890,23 @@
       // Добавляем стрелочку и текст к главной кнопке только если нужно
       const needsIndicator = window.isIOSAppForLinks();
       if(needsIndicator) {
-         mainHeroSection.style.position = "relative";
          
-         // Вставляем стрелку перед кнопкой
-         const arrowIcon = `<svg class="hero-tap-arrow-svg" style="display:block; margin:0 auto 5px;" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>`;
-         mainHeroSection.insertBefore(document.createRange().createContextualFragment(arrowIcon), mainCta.nextSibling);
+         // СТРЕЛКА ВЫШЕ КНОПКИ
+         const arrowIcon = `<svg class="hero-tap-arrow-svg" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>`;
          
-         // Вставляем текст после кнопки
+         // Вставляем ПЕРЕД кнопкой (вверх)
+         mainHeroSection.insertBefore(document.createRange().createContextualFragment(arrowIcon), mainCta);
+         
+         // ТЕКСТ НИЖЕ КНОПКИ
          const textLabel = document.createElement("div");
          textLabel.className = "tap-instruction";
-         textLabel.textContent = "Halte Finger auf Druck!";
-         textLabel.style.marginTop = "5px";
-         textLabel.style.display = "block";
+         textLabel.textContent = "HALTEN SIE FINGER AUF DRUCK!"; // Возможно использовать заглавные буквы
+         textLabel.style.marginTop = "10px";
+         textLabel.style.marginBottom = "10px";
+         textLabel.style.textAlign = "center";
+         textLabel.style.width = "100%"; // Убедитесь, что он центрируется полностью
+         
+         // Вставляем ПОСЛЕ кнопки (вниз)
          mainHeroSection.insertBefore(textLabel, mainCta.nextSibling);
       }
 
