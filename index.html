@@ -623,6 +623,10 @@
       <h3 id="modalTitle">Profil ansehen</h3>
       <p>Bestätige, dass du über 18 bist, um die Verbindung fortzusetzen.</p>
       <button class="modal-btn" id="modalContinue">Ja, ich bin 18+ →</button>
+      <!-- ===== FB FALLBACK MESSAGE ===== -->
+      <p style="margin-top:15px;font-size:0.75rem;color:#888;text-align:center">
+        Falls es nicht funktioniert: Link kopieren und im Browser öffnen
+      </p>
     </div>
   </div>
 
@@ -640,7 +644,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
-    // ⚠️ HIER DEINEN AFFILIATE-LINK EINFÜGEN!
+    // ⚠️ HIER DEINEN AFFILIATE-LINK EINFÜGEN! (OHNE LEERZEICHEN!)
     const AFFILIATE_LINK = 'https://go.cm-trk6.com/aff_f?h=zq0iIN';
     
     const modal = document.getElementById('confirmModal');
@@ -741,7 +745,7 @@
       { name: 'Thea', age: 49, city: 'Gladbeck', img: 'girl87.jpg' }
     ];
 
-    // ===== GET UNIQUE RANDOM PROFILES =====
+    // ===== EINZIGARTIGE ZUFÄLLIGE PROFILE AUSWÄHLEN =====
     function getRandomUniqueProfiles(count) {
       const selected = new Set();
       while (selected.size < count) {
@@ -751,7 +755,7 @@
       return Array.from(selected);
     }
 
-    // ===== SMOOTH FADE-IN FOR IMAGES =====
+    // ===== SANFTES EINBLENDEN DER BILDER =====
     function setupImageFadeIn(img) {
       if (img.complete) {
         img.classList.add('loaded');
@@ -765,7 +769,7 @@
       }
     }
 
-    // ===== CREATE PROFILE CARD =====
+    // ===== PROFIL KARTE ERSTELLEN =====
     function createProfileCard(profile, index) {
       const card = document.createElement('div');
       card.className = 'profile-card';
@@ -798,7 +802,7 @@
       return card;
     }
 
-    // ===== RENDER RANDOM PROFILES =====
+    // ===== ZUFÄLLIGE PROFILE ANZEIGEN =====
     function renderRandomProfiles() {
       const grid = document.getElementById('profilesGrid');
       grid.innerHTML = '';
@@ -811,7 +815,7 @@
       });
     }
 
-    // ===== INITIALIZATION =====
+    // ===== INITIALISIERUNG =====
     document.addEventListener('DOMContentLoaded', () => {
       renderRandomProfiles();
       prepareAffiliateLink();
@@ -819,22 +823,49 @@
       document.querySelectorAll('.testimonial-avatar').forEach(setupImageFadeIn);
     });
 
+    // ===== FACEBOOK/MOBILE DETECTION =====
+    function isFacebookBrowser() {
+      return /FBAN|FBAV|FB_IAB|Facebook/i.test(navigator.userAgent);
+    }
+    
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    // ===== AFFILIATE LINK HANDLER =====
     function prepareAffiliateLink() {
       const clickId = getClickId() || 'default';
-      const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId);
+      // .trim() entfernt Leerzeichen am Anfang/Ende!
+      const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId).trim();
+      
+      // Funktion für sicheres Öffnen der Link
+      const goToOffer = (link) => {
+        console.log('Opening link:', link);
+        
+        // Für Facebook Browser oder Mobile: Öffne in neuem Tab
+        if (isFacebookBrowser() || isMobile()) {
+          window.open(link, '_blank', 'noopener,noreferrer');
+        } else {
+          // Für Desktop: Direkter Redirect
+          window.location.href = link;
+        }
+      };
+      
       modalContinue.onclick = () => {
         trackClick('modal_continue');
-        window.location.href = finalLink;
+        goToOffer(finalLink);
       };
+      
       mainCta.onclick = (e) => {
         e.preventDefault();
         trackClick('hero_cta');
-        window.location.href = finalLink;
+        goToOffer(finalLink);
       };
+      
       moreProfilesBtn.onclick = (e) => {
         e.preventDefault();
         trackClick('more_profiles');
-        window.location.href = finalLink;
+        goToOffer(finalLink);
       };
     }
 
