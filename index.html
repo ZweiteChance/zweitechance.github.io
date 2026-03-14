@@ -45,12 +45,6 @@
       padding-bottom: 60px;
     }
 
-    /* ===== HERO SECTION ===== */
-    .hero {
-      text-align: center;
-      padding: 60px 20px 25px;
-    }
-    
     .hero h1 {
       font-family: var(--font-heading);
       font-size: 2.8rem;
@@ -77,30 +71,21 @@
       text-decoration: none;
       box-shadow: 0 8px 30px var(--accent-glow);
       transition: all 0.3s ease;
-      font-family: var(--font-body);
-      letter-spacing: -0.3px;
     }
     
     .hero-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 40px rgba(0, 200, 83, 0.6);
     }
-
-    /* ===== PROFILES GRID ===== */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
     .section-title {
       text-align: center;
-      font-family: var(--font-heading);
       font-size: 1.8rem;
       font-weight: 700;
       margin: 30px 0 35px;
       color: var(--text-main);
-      letter-spacing: -0.5px;
     }
     
     .profiles-grid {
@@ -132,9 +117,7 @@
       z-index: 0;
     }
     
-    .profile-card:hover::before { 
-      opacity: 1;
-    }
+    .profile-card:hover::before { opacity: 1; }
     
     .profile-card:hover {
       transform: translateY(-8px);
@@ -149,7 +132,6 @@
       background: linear-gradient(135deg, #1a1a1a, #252525);
     }
     
-    /* ===== SMOOTH FADE-IN FOR IMAGES ===== */
     .profile-img {
       width: 100%;
       height: 520px;
@@ -162,12 +144,8 @@
       will-change: opacity, transform;
     }
     
-    .profile-img.loaded {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .profile-img.loaded { opacity: 1; transform: scale(1); }
     
-    /* ===== SHIMMER PLACEHOLDER ===== */
     .profile-img::before {
       content: '';
       position: absolute;
@@ -177,9 +155,7 @@
       animation: shimmer 1.5s ease-in-out infinite;
     }
     
-    .profile-img.loaded::before {
-      display: none;
-    }
+    .profile-img.loaded::before { display: none; }
     
     @keyframes shimmer {
       0% { background-position: -200% 0; }
@@ -215,7 +191,6 @@
       50% { opacity: 0.4; }
     }
     
-    /* ===== DARK CARD BOTTOM ===== */
     .profile-info {
       padding: 25px 20px;
       text-align: center;
@@ -231,7 +206,6 @@
       font-size: 1.4rem;
       color: #ffffff;
       margin-bottom: 8px;
-      letter-spacing: -0.3px;
     }
     
     .profile-meta {
@@ -254,20 +228,14 @@
       text-decoration: none;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
-      font-family: var(--font-body);
-      letter-spacing: -0.2px;
     }
     
     .profile-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0, 200, 83, 0.5);
     }
-
-    /* ===== MORE PROFILES BUTTON ===== */
-    .more-profiles {
-      text-align: center;
-      margin: 45px 0 25px;
-    }
+    
+    .more-profiles { text-align: center; margin: 45px 0 25px; }
     
     .more-btn {
       display: inline-block;
@@ -281,8 +249,6 @@
       cursor: pointer;
       text-decoration: none;
       transition: all 0.3s ease;
-      font-family: var(--font-body);
-      letter-spacing: -0.3px;
     }
     
     .more-btn:hover {
@@ -291,8 +257,7 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 30px var(--accent-glow);
     }
-
-    /* ===== TRUST BADGE ===== */
+    
     .trust-section {
       text-align: center;
       padding: 15px 20px 0;
@@ -301,8 +266,7 @@
       margin-top: 10px;
       margin-bottom: 0;
     }
-
-    /* ===== TESTIMONIALS ===== */
+    
     .testimonials-section {
       padding: 10px 20px 60px;
       background: linear-gradient(180deg, transparent, rgba(0, 200, 83, 0.05), transparent);
@@ -349,9 +313,7 @@
       transition: opacity 0.4s ease;
     }
     
-    .testimonial-avatar.loaded {
-      opacity: 1;
-    }
+    .testimonial-avatar.loaded { opacity: 1; }
     
     .testimonial-user { flex: 1; }
     
@@ -360,20 +322,11 @@
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--text-main);
-      letter-spacing: -0.3px;
     }
     
-    .testimonial-meta {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
+    .testimonial-meta { color: var(--text-muted); font-size: 0.85rem; }
     
-    .stars {
-      color: #ffc107;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-    }
+    .stars { color: #ffc107; font-size: 1rem; letter-spacing: 2px; margin-bottom: 15px; }
     
     .testimonial-text {
       color: var(--text-muted);
@@ -388,8 +341,7 @@
       margin-top: 15px;
       opacity: 0.7;
     }
-
-    /* ===== MODAL ===== */
+    
     .modal {
       display: none;
       position: fixed;
@@ -400,7 +352,6 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      backdrop-filter: blur(5px);
     }
     
     .modal.active {
@@ -442,9 +393,7 @@
       transition: opacity 0.4s ease;
     }
     
-    .modal-img.loaded {
-      opacity: 1;
-    }
+    .modal-img.loaded { opacity: 1; }
     
     .modal h3 {
       font-family: var(--font-heading);
@@ -452,7 +401,6 @@
       font-weight: 700;
       margin-bottom: 15px;
       color: var(--text-main);
-      letter-spacing: -0.5px;
     }
     
     .modal p {
@@ -474,16 +422,13 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 5px 20px var(--accent-glow);
-      font-family: var(--font-body);
-      letter-spacing: -0.3px;
     }
     
     .modal-btn:hover {
       box-shadow: 0 8px 30px rgba(0, 200, 83, 0.6);
       transform: translateY(-2px);
     }
-
-    /* ===== FOOTER ===== */
+    
     footer {
       text-align: center;
       padding: 40px 20px 50px;
@@ -510,7 +455,6 @@
       margin-right: auto;
     }
 
-    /* ===== MOBILE ===== */
     @media (max-width: 1024px) {
       .profiles-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -819,45 +763,41 @@
       document.querySelectorAll('.testimonial-avatar').forEach(setupImageFadeIn);
     });
 
-    // ===== iOS + FACEBOOK DETECTION =====
+    // ===== FORCE OPEN IN SAFARI (iOS) =====
+    function forceOpenInSafari(url) {
+      console.log('Force opening Safari with URL:', url);
+      
+      // Создаем временную ссылку, которая вызовет системный диалог iOS
+      const tempAnchor = document.createElement('a');
+      tempAnchor.href = url;
+      tempAnchor.style.display = 'none';
+      tempAnchor.setAttribute('target', '_blank');
+      document.body.appendChild(tempAnchor);
+      
+      // Пробуем несколько методов
+      let opened = false;
+      
+      // Метод 1: window.open
+      const win = window.open(url, '_blank', 'noopener,noreferrer');
+      if (win) opened = true;
+      
+      // Если не сработало — показываем инструкцию
+      setTimeout(() => {
+        if (!opened && isIOS()) {
+          showModalWithLink(url);
+        }
+        document.body.removeChild(tempAnchor);
+      }, 100);
+    }
+    
     function isIOS() {
       return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     }
     
-    function isFacebookApp() {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      return /FBAN|FBAV|FB_IAB|Facebook/i.test(ua);
-    }
-
-    // ===== FORCE OPEN IN SAFARI (iOS) =====
-    function openInSafari(url) {
-      // Erstelle unsichtbares iframe für iOS
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = url;
-      document.body.appendChild(iframe);
-      
-      // Versuche in neuem Fenster zu öffnen
-      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-      
-      // Wenn nicht funktioniert - zeige Anleitung
-      setTimeout(() => {
-        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-          showOpenInstructions(url);
-        }
-        // iframe aufräumen
-        setTimeout(() => {
-          if (document.body.contains(iframe)) {
-            document.body.removeChild(iframe);
-          }
-        }, 100);
-      }, 500);
-    }
-    
-    function showOpenInstructions(url) {
-      // Erstelle schönes Modal mit Anleitung
-      const instructionsModal = document.createElement('div');
-      instructionsModal.style.cssText = `
+    function showModalWithLink(url) {
+      // Создаем красивое модальное окно с кнопкой для открыния в Safari
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
@@ -867,9 +807,10 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
+        font-family: 'Inter', sans-serif;
       `;
       
-      instructionsModal.innerHTML = `
+      overlay.innerHTML = `
         <div style="
           background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
           border-radius: 20px;
@@ -882,7 +823,7 @@
           <div style="font-size: 3rem; margin-bottom: 20px;">📱</div>
           <h3 style="color: #fff; margin-bottom: 15px; font-size: 1.5rem;">In Safari öffnen</h3>
           <p style="color: #b0b0b0; margin-bottom: 25px; line-height: 1.6;">
-            Klicke auf den Button unten, um den Link in Safari zu öffnen
+            Tippe auf den Button unten, um den Link in Safari zu öffnen
           </p>
           <a href="${url}" target="_blank" rel="noopener noreferrer" 
              style="
@@ -899,7 +840,7 @@
             In Safari öffnen →
           </a>
           <p style="color: #888; font-size: 0.85rem; margin-top: 15px;">
-            Oder kopiere den Link und füge ihn manuell in Safari ein
+            Oder kopiere den Link und füge ihn in Safari ein
           </p>
           <button onclick="this.closest('div').parentElement.remove()" 
                   style="
@@ -915,7 +856,19 @@
         </div>
       `;
       
-      document.body.appendChild(instructionsModal);
+      document.body.appendChild(overlay);
+      
+      // Удаляем после клика по кнопке
+      const closeBtn = overlay.querySelector('button');
+      closeBtn.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+      });
+    }
+
+    // ===== IS FACEBOOK OR INSTAGRAM APP =====
+    function isFacebookOrInstagramApp() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return /FBAN|FBAV|FB_IAB|Facebook|Instagram/i.test(ua);
     }
 
     // ===== AFFILIATE LINK HANDLER =====
@@ -923,25 +876,22 @@
       const clickId = getClickId() || 'default';
       const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId).trim();
       
-      // Funktion zum Öffnen des Links
       const goToOffer = (link) => {
         console.log('Opening link:', link);
-        console.log('Is iOS:', isIOS());
-        console.log('Is Facebook:', isFacebookApp());
         
-        // Wenn iOS + Facebook App — öffne zwingend in Safari
-        if (isIOS() && isFacebookApp()) {
-          openInSafari(link);
+        // Для iOS + Meta Apps — принудительное открытие в Safari
+        if (isIOS() && isFacebookOrInstagramApp()) {
+          forceOpenInSafari(link);
         } 
-        // Wenn nur iOS — öffne in neuem Fenster
+        // Для iOS — новое окно
         else if (isIOS()) {
           window.open(link, '_blank', 'noopener,noreferrer');
         }
-        // Wenn Facebook auf Android
-        else if (isFacebookApp()) {
+        // Для Meta Apps на Android — новое окно
+        else if (isFacebookOrInstagramApp()) {
           window.open(link, '_blank', 'noopener,noreferrer');
         }
-        // Für alle anderen — direkter Redirect
+        // Для всех остальных — прямой редирект
         else {
           window.location.href = link;
         }
