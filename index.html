@@ -45,6 +45,19 @@
       padding-bottom: 60px;
     }
 
+    /* ===== HERO SECTION (CENTERED FIX) ===== */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 25px;
+      position: relative;
+      
+      /* === ИСПРАВЛЕНИЕ ЦЕНТРИРОВАНИЯ === */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Горизонтальное центрирование по оси X */
+      justify-content: center; /* Вертикальное центрирование по оси Y */
+    }
+    
     .hero h1 {
       font-family: var(--font-heading);
       font-size: 2.8rem;
@@ -56,6 +69,11 @@
       background-clip: text;
       letter-spacing: -1px;
       line-height: 1.2;
+      
+      /* Дополнительное закрепление */
+      max-width: 90%; 
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .hero-btn {
@@ -71,6 +89,8 @@
       text-decoration: none;
       box-shadow: 0 8px 30px var(--accent-glow);
       transition: all 0.3s ease;
+      font-family: var(--font-body);
+      letter-spacing: -0.3px;
     }
     
     .hero-btn:hover {
@@ -455,7 +475,7 @@
       margin-right: auto;
     }
 
-    /* ===== NEW IOS OVERLAY STYLES ===== */
+    /* IOS OVERLAY STYLES */
     .ios-open-overlay {
       position: absolute;
       top: 0; left: 0;
@@ -836,9 +856,7 @@
       const isFB = /FBAN|FBAV|FB_IAB|Facebook/i.test(ua);
       const isIG = /Instagram/i.test(ua);
       
-      // Log only in console if you want to see results
-      // console.log("Detection:", { isIOS, isFB, isIG, result: isIOS && (isFB || isIG) });
-      
+      console.log("Detection:", { isIOS, isFB, isIG });
       return isIOS && (isFB || isIG);
     }
 
