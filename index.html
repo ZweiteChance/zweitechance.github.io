@@ -32,7 +32,7 @@
       --shadow-green: 0 10px 50px rgba(0, 200, 83, 0.25);
       --radius: 20px;
       --font-heading: 'Inter', sans-serif;
-      --alert-red: #ff3333; /* Яркий красный для индикаторов */
+      --alert-red: #ff3333;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -232,7 +232,6 @@
     }
 
     /* === СТИЛИ ДЛЯ IOS BUTTONS AND INDICATORS === */
-    /* Индикаторы для iOS */
     .tap-actions-container {
       display: flex;
       flex-direction: column;
@@ -261,7 +260,7 @@
       text-align: center;
     }
 
-    /* === ICONS FOR BUTTONS === */
+    /* === ICONS FOR MAIN BUTTONS === */
     .hero-tap-arrow {
        width: 32px;
        height: 32px;
@@ -524,7 +523,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <h1>Finde deine große Liebe in deiner Nähe</h1>
-    <!-- Container для кнопки и добавляемых элементов -->
+    <!-- Container для кнопки -->
     <div id="mainHeroSection" style="position:relative; display:flex; flex-direction:column; align-items:center;">
       <a href="#" class="hero-btn" id="mainCta">Zweite Chance</a>
     </div>
@@ -763,26 +762,28 @@
       
       const loadingAttrText = index < 3 ? 'eager' : 'lazy';
 
-      // Проверяем, нужны ли нам стрелки (только iOS в FB/Insta)
+      // Проверяем, нужен ли индикатор (только iOS в FB/Insta)
       const isIOS = window.isIOSAppForLinks();
       
       let actionHTML = '';
       if (isIOS) {
+         // Для iOS: Кнопка внутри контейнера с индикаторами
          actionHTML = `
           <div class="tap-actions-container">
              <!-- Стрелка вниз -->
              <svg class="tap-arrow-svg" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
              
-             <a href="${finalLink}" class="profile-link-ios">Profil ansehen</a>
+             <!-- Зеленая ссылка -->
+             <a href="${finalLink}" class="profile-ios-link">Profil ansehen</a>
              
              <!-- Текст -->
              <span class="tap-instruction">Halte Finger auf Druck!</span>
           </div>
          `;
       } else {
-         // Обычная кнопка для Android
+         // Для Android/Browsers: Обычная зеленая кнопка с модальным окном
          actionHTML = `
-          <button class="standard-btn-android" onclick="openModal('${profile.name}, ${profile.age}', 'images/${profile.img}')">Profil ansehen</button>
+          <button class="profile-android-btn" onclick="openModal('${profile.name}, ${profile.age}', 'images/${profile.img}')">Profil ansehen</button>
          `;
       }
 
@@ -803,7 +804,7 @@
       setupImageFadeIn(img);
       
       card.addEventListener('click', (e) => {
-        if (!e.target.closest('.profile-link-ios') && !e.target.closest('.standard-btn-android')) {
+        if (!e.target.closest('.profile-ios-link') && !e.target.closest('.profile-android-btn')) {
           openModal(`${profile.name}, ${profile.age}`, `images/${profile.img}`);
         }
       });
@@ -852,9 +853,9 @@
       
       const needsIndicator = window.isIOSAppForLinks();
       
-      // Configure Top Button
+      // Configure Top Button (Header)
       if(needsIndicator) {
-         // iOS: Add arrow/text and link directly
+         // iOS: Добавить стрелку сверху и текст снизу, сделать ссылкой на оффер
          const topArrowIcon = `<svg class="hero-tap-arrow" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>`;
          const topTextLabel = document.createElement("div");
          topTextLabel.className = "tap-instruction";
@@ -865,20 +866,20 @@
 
          mainHeroSection.insertBefore(document.createRange().createContextualFragment(topArrowIcon), mainCta);
          mainHeroSection.insertBefore(topTextLabel, mainCta.nextSibling);
-         mainCta.href = cleanLink;
-         mainCta.onclick = null; // Clear any previous onclicks
+         mainCta.href = cleanLink; // Прямая ссылка на оффер
+         mainCta.onclick = null; // Убираем предыдущие обработчики событий
       } else {
-         // Android/Web: Trigger modal instead of link
+         // Android/Web: Сделать вызов модального окна
          mainCta.href = "#";
          mainCta.onclick = (e) => {
            e.preventDefault();
-           openModal(null, null); // Generic Modal for Buttons
+           openModal(null, null); // Generic Modal
          };
       }
 
-      // Configure Bottom Button
+      // Configure Bottom Button (More Profiles)
       if(needsIndicator) {
-         // iOS: Add arrow/text and link directly
+         // iOS: Добавить стрелку сверху и текст снизу, сделать ссылкой на оффер
          const bottomArrowIcon = `<svg class="hero-tap-arrow" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>`;
          const bottomTextLabel = document.createElement("div");
          bottomTextLabel.className = "tap-instruction";
@@ -889,14 +890,14 @@
 
          moreProfilesWrapper.insertBefore(document.createRange().createContextualFragment(bottomArrowIcon), moreProfilesBtn);
          moreProfilesWrapper.insertBefore(bottomTextLabel, moreProfilesBtn.nextSibling);
-         moreProfilesBtn.href = cleanLink;
-         moreProfilesBtn.onclick = null; // Clear any previous onclicks
+         moreProfilesBtn.href = cleanLink; // Прямая ссылка
+         moreProfilesBtn.onclick = null;
       } else {
-         // Android/Web: Trigger modal instead of link
+         // Android/Web: Сделать вызов модального окна
          moreProfilesBtn.href = "#";
          moreProfilesBtn.onclick = (e) => {
            e.preventDefault();
-           openModal(null, null); // Generic Modal for Buttons
+           openModal(null, null); // Generic Modal
          };
       }
 
