@@ -32,7 +32,7 @@
       --shadow-green: 0 10px 50px rgba(0, 200, 83, 0.25);
       --radius: 20px;
       --font-heading: 'Inter', sans-serif;
-      --alert-red: #ff3333; /* Яркий красный для индикаторов */
+      --alert-red: #ff3333;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -234,14 +234,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px; /* Чуть больше расстояние */
+      gap: 8px;
     }
     
     .tap-arrow-svg {
-      width: 28px; /* БОЛЬШЕ чем было */
+      width: 28px;
       height: 28px;
-      stroke: var(--alert-red); /* Яркий красный */
-      stroke-width: 5; /* ТОЛЩЕ линия */
+      stroke: var(--alert-red);
+      stroke-width: 5;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -272,12 +272,12 @@
     }
 
     .tap-instruction {
-      color: var(--alert-red) !important; /* Яркий красный текст */
-      font-size: 1.1rem; /* БОЛЬШЕ шрифт */
-      font-weight: 900; /* ЖИРНЫЙ текст */
+      color: var(--alert-red) !important;
+      font-size: 1.1rem;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-top: 5px; /* Чуть ближе к кнопке */
+      margin-top: 5px;
       text-align: center;
       line-height: 1.2;
     }
@@ -290,7 +290,7 @@
     }
 
     .hero-tap-arrow-svg {
-      width: 32px; /* Очень большая стрелка сверху */
+      width: 32px;
       height: 32px;
       stroke: var(--alert-red);
       stroke-width: 5;
@@ -298,10 +298,10 @@
       stroke-linecap: round;
       stroke-linejoin: round;
       filter: drop-shadow(0 2px 2px rgba(255, 51, 51, 0.4));
-      margin-bottom: 10px; /* Расстояние от стрелки до кнопки */
+      margin-bottom: 10px;
     }
 
-    .more-profiles { text-align: center; margin: 45px 0 25px; }
+    .more-profiles { text-align: center; margin: 45px 0 25px; display: flex; flex-direction: column; align-items: center;}
     
     .more-btn {
       display: inline-block;
@@ -539,7 +539,7 @@
       .hero-btn { padding: 14px 38px; font-size: 1rem; }
       
       /* Адаптация для мобильных */
-      .tap-instruction { font-size: 1rem; } /* Уменьшаем немного но оставляем крупным */
+      .tap-instruction { font-size: 1rem; }
       .tap-arrow-svg { width: 20px; height: 20px; }
       .hero-tap-arrow-svg { width: 20px; height: 20px; }
     }
@@ -668,7 +668,7 @@
     const mainCta = document.getElementById('mainCta');
     const moreProfilesBtn = document.getElementById('moreProfilesBtn');
     const mainHeroSection = document.getElementById('mainHeroSection');
-    const moreProfilesWrapper = document.getElementById('moreProfilesWrapper'); // Fallback added
+    const moreProfilesWrapper = document.getElementById('moreProfilesWrapper');
     
     // ===== PROFILE DATABASE (87 FOTOS) - SELTENE NAMEN & KLEINE STÄDTE =====
     const allProfiles = [
@@ -785,7 +785,7 @@
       }
     }
 
-    // ===== PROFIL KARTE ERSTELLEN =====
+    // ===== PROFIL KARTE ERСТELLEN =====
     function createProfileCard(profile, index) {
       const card = document.createElement('div');
       card.className = 'profile-card';
@@ -799,7 +799,6 @@
       // Проверяем, нужны ли нам стрелки (только iOS в FB/Insta)
       const needsActionIndicator = window.isIOSAppForLinks();
       
-      // Если нужен индикатор
       let actionHTML = '';
       if (needsActionIndicator) {
          actionHTML = `
@@ -814,9 +813,9 @@
           </div>
          `;
       } else {
-         // Обычная кнопка для Android
+         // Для Android/Web: Кнопка вызывает модалку (не ссылка напрямую)
          actionHTML = `
-          <a href="${link}" class="profile-btn">Profil ansehen</a>
+          <button class="profile-btn" onclick="openModal('${profile.name}, ${profile.age}', 'images/${profile.img}')">Profil ansehen</button>
          `;
       }
 
@@ -837,6 +836,8 @@
       setupImageFadeIn(img);
       
       card.addEventListener('click', (e) => {
+        // Если кликнули не по кнопке (например, по фото или имени), то открывается модалка
+        // Это работает и для iOS и Android
         if (!e.target.closest('.profile-btn')) {
           openModal(`${profile.name}, ${profile.age}`, `images/${profile.img}`);
         }
@@ -858,7 +859,7 @@
       });
     }
 
-    // ===== INITIALIZIERUNG =====
+    // ===== INITIALISIERUNG =====
     document.addEventListener('DOMContentLoaded', () => {
       renderRandomProfiles();
       prepareAffiliateLink();
@@ -877,7 +878,7 @@
       return isIOS && (isFB || isIG);
     }
 
-    // ===== AFFILIATE LINK HANDLER (БЕЗ REDIRECT.HTML) =====
+    // ===== AFFILIATE LINK HANDLER =====
     function getFinalLinkFromProfile(profileName) {
        const clickId = getClickId() || 'default';
        return AFFILIATE_LINK.replace('{click_id}', clickId);
@@ -886,7 +887,7 @@
     function prepareAffiliateLink() {
       const clickId = getClickId() || 'default';
       const finalLink = AFFILIATE_LINK.replace('{click_id}', clickId).trim();
-      const cleanLink = finalLink; // Ensure trimmed
+      const cleanLink = finalLink;
       
       const needsIndicator = window.isIOSAppForLinks();
       
@@ -898,25 +899,22 @@
          // TEXT BELOW BUTTON
          const textLabel = document.createElement("div");
          textLabel.className = "tap-instruction";
-         textLabel.textContent = "HALTEN SIE FINGER AUF DRUCK!"; // Möglicherweise verwenden Sie Großbuchstaben
+         textLabel.textContent = "HALTEN SIE FINGER AUF DRUCK!";
          textLabel.style.marginTop = "10px";
-         textLabel.style.marginBottom = "10px";
          textLabel.style.textAlign = "center";
-         textLabel.style.width = "100%"; // Stellen Sie sicher, dass er mittig ist
+         textLabel.style.width = "100%"; 
          
          // VORHER EINFÜGEN (oben)
          mainHeroSection.insertBefore(document.createRange().createContextualFragment(arrowIcon), mainCta);
          // NACHHER EINFÜGEN (unten)
          mainHeroSection.insertBefore(textLabel, mainCta.nextSibling);
          
-         // WICHTIG: Direkt auf Landingpage gehen
+         // Direkt auf Landingpage gehen
          mainCta.href = cleanLink;
-         mainCta.onclick = null; // Vorherigen Handler entfernen
+         mainCta.onclick = null; 
          
       } else {
          // Android/Web: Öffne Modal (oder Standardverhalten)
-         // Für iOS hatten wir dies in der vorherigen Version geändert, aber für Android lassen wir es "wie im Code" (hier: Modal oder Default)
-         // Damit das Modal trotzdem gut aussieht, binden wir einen EventListener ein
          mainCta.href = "#";
          mainCta.onclick = (e) => {
            e.preventDefault();
@@ -939,7 +937,7 @@
          
          // Direkt auf Landingpage
          moreProfilesBtn.href = cleanLink;
-         moreProfilesBtn.onclick = null; // Vorherigen Handler entfernen
+         moreProfilesBtn.onclick = null; 
          
       } else {
          // Android/Web: Modal öffnen
@@ -981,7 +979,7 @@
         const name = profileName.split(',')[0];
         modalTitle.textContent = `${name} möchte dich kennenlernen!`;
       } else {
-        modalTitle.textContent = 'Warte! Dein Match ist bereit 💫'; // Generic Message
+        modalTitle.textContent = 'Warte! Dein Match ist bereit 💫';
       }
       
       if (profileImg) {
