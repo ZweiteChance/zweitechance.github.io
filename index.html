@@ -231,7 +231,7 @@
       font-weight: 500;
     }
 
-    /* === СТИЛИ ДЛЯ IOS BUTTONS AND INDICATORS === */
+    /* ===== СТИЛИ ДЛЯ IOS BUTTONS AND INDICATORS === */
     .tap-actions-container {
       display: flex;
       flex-direction: column;
@@ -259,8 +259,32 @@
       line-height: 1.2;
       text-align: center;
     }
+    
+    /* Исправленный стиль для IOS ссылки на картинках */
+    .profile-ios-link {
+      display: inline-block;
+      padding: 12px 35px;
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-green-dark)) !important;
+      color: white !important;
+      font-weight: 700 !important;
+      font-size: 0.95rem !important;
+      border: none !important;
+      border-radius: 25px !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+      transition: all 0.3s ease !important;
+      font-family: var(--font-body) !important;
+      letter-spacing: -0.2px !important;
+      text-align: center !important;
+    }
+    
+    .profile-ios-link:hover {
+       transform: translateY(-2px) !important;
+       box-shadow: 0 6px 20px rgba(0, 200, 83, 0.5) !important;
+    }
 
-    /* === ICONS FOR MAIN BUTTONS === */
+    /* ===== Стили для ИКОНКИ === */
     .hero-tap-arrow {
        width: 32px;
        height: 32px;
@@ -523,7 +547,6 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <h1>Finde deine große Liebe in deiner Nähe</h1>
-    <!-- Container для кнопки -->
     <div id="mainHeroSection" style="position:relative; display:flex; flex-direction:column; align-items:center;">
       <a href="#" class="hero-btn" id="mainCta">Zweite Chance</a>
     </div>
@@ -534,11 +557,9 @@
     <h2 class="section-title">Beliebte Profile heute</h2>
     
     <div class="profiles-grid" id="profilesGrid">
-      <!-- Profile werden per JavaScript hinzugefügt -->
     </div>
 
     <!-- ===== MORE PROFILES BUTTON ===== -->
-    <!-- Container для кнопки -->
     <div class="more-profiles" id="moreProfilesWrapper">
       <a href="#" class="more-btn" id="moreProfilesBtn">Mehr Profile ansehen →</a>
     </div>
@@ -566,7 +587,7 @@
             </div>
           </div>
           <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Ich war skeptisch, aber nach 2 Wochen habe ich hier eine wunderbare Frau kennengelernt. Die Plattform ist seriös und einfach zu bedienen. Bin sehr glücklich!"</p>
+          <p class="testimonial-text">"Ich war skeptisch, aber nach 2 Wochen habe ich hier eine wunderbare Frau kennengelernt."</p>
           <div class="testimonial-date">vor 3 Wochen</div>
         </div>
         
@@ -580,7 +601,7 @@
             </div>
           </div>
           <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Endlich eine Dating-Seite, die hält was sie verspricht! Habe meine Partnerin nach einem Monat gefunden. Der Support ist auch top. Absolute Empfehlung!"</p>
+          <p class="testimonial-text">"Endlich eine Dating-Seite, die hält was sie verspricht!"</p>
           <div class="testimonial-date">vor 1 Monat</div>
         </div>
         
@@ -594,7 +615,7 @@
             </div>
           </div>
           <div class="stars">★★★★☆</div>
-          <p class="testimonial-text">"Gute Auswahl an Profilen in meiner Altersgruppe. Die Kommunikation verlief von Anfang an respektvoll. Nach 6 Wochen Dates habe ich meine Traumfrau gefunden."</p>
+          <p class="testimonial-text">"Gute Auswahl an Profilen in meiner Altersgruppe."</p>
           <div class="testimonial-date">vor 2 Wochen</div>
         </div>
         
@@ -638,7 +659,7 @@
     const mainHeroSection = document.getElementById('mainHeroSection');
     const moreProfilesWrapper = document.getElementById('moreProfilesWrapper');
     
-    // ===== PROFILE DATABASE (87 FOTOS) - SELTENE NAMEN & KLEINE STÄDTE =====
+    // ===== PROFILE DATABASE (87 FOTOS) =====
     const allProfiles = [
       { name: 'Ingeborg', age: 52, city: 'Passau', img: 'girl1.jpg' },
       { name: 'Hildegard', age: 54, city: 'Bamberg', img: 'girl2.jpg' },
@@ -762,26 +783,23 @@
       
       const loadingAttrText = index < 3 ? 'eager' : 'lazy';
 
-      // Проверяем, нужен ли индикатор (только iOS в FB/Insta)
       const isIOS = window.isIOSAppForLinks();
       
       let actionHTML = '';
       if (isIOS) {
-         // Для iOS: Кнопка внутри контейнера с индикаторами
+         // Для iOS: Красные стрелки + зеленая ссылка
          actionHTML = `
           <div class="tap-actions-container">
-             <!-- Стрелка вниз -->
              <svg class="tap-arrow-svg" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
              
-             <!-- Зеленая ссылка -->
+             <!-- Зеленая ссылка для iOS -->
              <a href="${finalLink}" class="profile-ios-link">Profil ansehen</a>
              
-             <!-- Текст -->
              <span class="tap-instruction">Halte Finger auf Druck!</span>
           </div>
          `;
       } else {
-         // Для Android/Browsers: Обычная зеленая кнопка с модальным окном
+         // Для Android/Web: Зеленая кнопка с модалкой
          actionHTML = `
           <button class="profile-android-btn" onclick="openModal('${profile.name}, ${profile.age}', 'images/${profile.img}')">Profil ansehen</button>
          `;
@@ -855,7 +873,6 @@
       
       // Configure Top Button (Header)
       if(needsIndicator) {
-         // iOS: Добавить стрелку сверху и текст снизу, сделать ссылкой на оффер
          const topArrowIcon = `<svg class="hero-tap-arrow" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>`;
          const topTextLabel = document.createElement("div");
          topTextLabel.className = "tap-instruction";
@@ -866,20 +883,18 @@
 
          mainHeroSection.insertBefore(document.createRange().createContextualFragment(topArrowIcon), mainCta);
          mainHeroSection.insertBefore(topTextLabel, mainCta.nextSibling);
-         mainCta.href = cleanLink; // Прямая ссылка на оффер
-         mainCta.onclick = null; // Убираем предыдущие обработчики событий
+         mainCta.href = cleanLink; 
+         mainCta.onclick = null; 
       } else {
-         // Android/Web: Сделать вызов модального окна
          mainCta.href = "#";
          mainCta.onclick = (e) => {
            e.preventDefault();
-           openModal(null, null); // Generic Modal
+           openModal(null, null); 
          };
       }
 
       // Configure Bottom Button (More Profiles)
       if(needsIndicator) {
-         // iOS: Добавить стрелку сверху и текст снизу, сделать ссылкой на оффер
          const bottomArrowIcon = `<svg class="hero-tap-arrow" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>`;
          const bottomTextLabel = document.createElement("div");
          bottomTextLabel.className = "tap-instruction";
@@ -890,18 +905,16 @@
 
          moreProfilesWrapper.insertBefore(document.createRange().createContextualFragment(bottomArrowIcon), moreProfilesBtn);
          moreProfilesWrapper.insertBefore(bottomTextLabel, moreProfilesBtn.nextSibling);
-         moreProfilesBtn.href = cleanLink; // Прямая ссылка
+         moreProfilesBtn.href = cleanLink; 
          moreProfilesBtn.onclick = null;
       } else {
-         // Android/Web: Сделать вызов модального окна
          moreProfilesBtn.href = "#";
          moreProfilesBtn.onclick = (e) => {
            e.preventDefault();
-           openModal(null, null); // Generic Modal
+           openModal(null, null); 
          };
       }
 
-      // Modal Continue Handler (Redirects for everyone)
       modalContinue.onclick = () => {
         trackClick('modal_continue');
         window.location.href = cleanLink;
@@ -922,7 +935,7 @@
         const name = profileName.split(',')[0];
         modalTitle.textContent = `${name} möchte dich kennenlernen!`;
       } else {
-        modalTitle.textContent = 'Warte! Dein Match ist bereit 💫'; // Generic message for buttons
+        modalTitle.textContent = 'Warte! Dein Match ist bereit 💫'; 
       }
       
       if (profileImg) {
