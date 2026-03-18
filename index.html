@@ -234,14 +234,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 8px; /* Чуть больше расстояние */
     }
     
     .tap-arrow-svg {
-      width: 28px;
+      width: 28px; /* БОЛЬШЕ чем было */
       height: 28px;
-      stroke: var(--alert-red);
-      stroke-width: 5;
+      stroke: var(--alert-red); /* Яркий красный */
+      stroke-width: 5; /* ТОЛЩЕ линия */
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -272,12 +272,12 @@
     }
 
     .tap-instruction {
-      color: var(--alert-red) !important;
-      font-size: 1.1rem;
-      font-weight: 900;
+      color: var(--alert-red) !important; /* Яркий красный текст */
+      font-size: 1.1rem; /* БОЛЬШЕ шрифт */
+      font-weight: 900; /* ЖИРНЫЙ текст */
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-top: 5px;
+      margin-top: 5px; /* Чуть ближе к кнопке */
       text-align: center;
       line-height: 1.2;
     }
@@ -290,7 +290,7 @@
     }
 
     .hero-tap-arrow-svg {
-      width: 32px;
+      width: 32px; /* Очень большая стрелка сверху */
       height: 32px;
       stroke: var(--alert-red);
       stroke-width: 5;
@@ -298,7 +298,7 @@
       stroke-linecap: round;
       stroke-linejoin: round;
       filter: drop-shadow(0 2px 2px rgba(255, 51, 51, 0.4));
-      margin-bottom: 10px;
+      margin-bottom: 10px; /* Расстояние от стрелки до кнопки */
     }
 
     .more-profiles { text-align: center; margin: 45px 0 25px; display: flex; flex-direction: column; align-items: center;}
@@ -539,7 +539,7 @@
       .hero-btn { padding: 14px 38px; font-size: 1rem; }
       
       /* Адаптация для мобильных */
-      .tap-instruction { font-size: 1rem; }
+      .tap-instruction { font-size: 1rem; } /* Уменьшаем немного но оставляем крупным */
       .tap-arrow-svg { width: 20px; height: 20px; }
       .hero-tap-arrow-svg { width: 20px; height: 20px; }
     }
@@ -670,7 +670,7 @@
     const mainHeroSection = document.getElementById('mainHeroSection');
     const moreProfilesWrapper = document.getElementById('moreProfilesWrapper');
     
-    // ===== PROFILE DATABASE (87 FOTOS) - SELTENE NAMEN & KLEINE STÄDTE =====
+    // ===== PROFILE DATABASE (222 FOTOS) - DEUTSCHE STÄDTE =====
     const allProfiles = [
       { name: 'Ingeborg', age: 52, city: 'Passau', img: 'girl1.jpg' },
       { name: 'Hildegard', age: 54, city: 'Bamberg', img: 'girl2.jpg' },
@@ -758,7 +758,142 @@
       { name: 'Paula', age: 52, city: 'Mülheim', img: 'girl84.jpg' },
       { name: 'Rosa', age: 47, city: 'Oberhausen', img: 'girl85.jpg' },
       { name: 'Sofia', age: 54, city: 'Bottrop', img: 'girl86.jpg' },
-      { name: 'Thea', age: 49, city: 'Gladbeck', img: 'girl87.jpg' }
+      { name: 'Thea', age: 49, city: 'Gladbeck', img: 'girl87.jpg' },
+      { name: 'Anna', age: 42, city: 'Kiel', img: 'girl88.jpg' },
+      { name: 'Beate', age: 48, city: 'Neubrandenburg', img: 'girl89.jpg' },
+      { name: 'Claudia', age: 51, city: 'Magdeburg', img: 'girl90.jpg' },
+      { name: 'Daniela', age: 45, city: 'Potsdam', img: 'girl91.jpg' },
+      { name: 'Elke', age: 53, city: 'Dessau', img: 'girl92.jpg' },
+      { name: 'Franziska', age: 49, city: 'Brandenburg', img: 'girl93.jpg' },
+      { name: 'Grit', age: 46, city: 'Leipzig', img: 'girl94.jpg' },
+      { name: 'Heike', age: 50, city: 'Dresden', img: 'girl95.jpg' },
+      { name: 'Inka', age: 55, city: 'Bautzen', img: 'girl96.jpg' },
+      { name: 'Jasmin', age: 44, city: 'Chemnitz', img: 'girl97.jpg' },
+      { name: 'Katrin', age: 47, city: 'Zwickau', img: 'girl98.jpg' },
+      { name: 'Laura', age: 52, city: 'Plauen', img: 'girl99.jpg' },
+      { name: 'Melanie', age: 50, city: 'Görlitz', img: 'girl100.jpg' },
+      { name: 'Nicole', age: 43, city: 'Halle', img: 'girl101.jpg' },
+      { name: 'Olivia', age: 48, city: 'Saalfeld', img: 'girl102.jpg' },
+      { name: 'Petra', age: 51, city: 'Erfurt', img: 'girl103.jpg' },
+      { name: 'Quentin', age: 46, city: 'Jena', img: 'girl104.jpg' },
+      { name: 'Rachel', age: 54, city: 'Weimar', img: 'girl105.jpg' },
+      { name: 'Sarah', age: 47, city: 'Gotha', img: 'girl106.jpg' },
+      { name: 'Teresa', age: 52, city: 'Arnstadt', img: 'girl107.jpg' },
+      { name: 'Ulrike', age: 49, city: 'Eisenach', img: 'girl108.jpg' },
+      { name: 'Vanessa', age: 45, city: 'Suhl', img: 'girl109.jpg' },
+      { name: 'Wanda', age: 53, city: 'Meiningen', img: 'girl110.jpg' },
+      { name: 'Xenia', age: 48, city: 'Coburg', img: 'girl111.jpg' },
+      { name: 'Yvonne', age: 50, city: 'Hof', img: 'girl112.jpg' },
+      { name: 'Zoe', age: 44, city: 'Lichtenfels', img: 'girl113.jpg' },
+      { name: 'Agnes', age: 55, city: 'Schweinfurt', img: 'girl114.jpg' },
+      { name: 'Bianca', age: 46, city: 'Bad Kissingen', img: 'girl115.jpg' },
+      { name: 'Celine', age: 51, city: 'Schweinfurt', img: 'girl116.jpg' },
+      { name: 'Doris', age: 47, city: 'Rhöngrab', img: 'girl117.jpg' },
+      { name: 'Elisabeth', age: 54, city: 'Bad Neustadt', img: 'girl118.jpg' },
+      { name: 'Friederike', age: 42, city: 'Marktredwitz', img: 'girl119.jpg' },
+      { name: 'Gaby', age: 49, city: 'Weiden', img: 'girl120.jpg' },
+      { name: 'Hannah', age: 52, city: 'Amberg', img: 'girl121.jpg' },
+      { name: 'Isabel', age: 45, city: 'Neustadt', img: 'girl122.jpg' },
+      { name: 'Jenny', age: 50, city: 'Regensburg', img: 'girl123.jpg' },
+      { name: 'Kirsten', age: 48, city: 'Straubing', img: 'girl124.jpg' },
+      { name: 'Leni', age: 53, city: 'Deggendorf', img: 'girl125.jpg' },
+      { name: 'Miriam', age: 46, city: 'Passau', img: 'girl126.jpg' },
+      { name: 'Nadine', age: 51, city: 'Burghausen', img: 'girl127.jpg' },
+      { name: 'Ophelia', age: 44, city: 'Altötting', img: 'girl128.jpg' },
+      { name: 'Paula', age: 47, city: 'Mühldorf', img: 'girl129.jpg' },
+      { name: 'Quira', age: 52, city: 'Rosenheim', img: 'girl130.jpg' },
+      { name: 'Ricarda', age: 49, city: 'Traunstein', img: 'girl131.jpg' },
+      { name: 'Saskia', age: 54, city: 'Bad Reichenhall', img: 'girl132.jpg' },
+      { name: 'Tanja', age: 43, city: 'Berchtesgaden', img: 'girl133.jpg' },
+      { name: 'Ute', age: 50, city: 'Chiemgau', img: 'girl134.jpg' },
+      { name: 'Vicky', age: 46, city: 'Salzburg', img: 'girl135.jpg' },
+      { name: 'Wanja', age: 55, city: 'Garmisch', img: 'girl136.jpg' },
+      { name: 'Xena', age: 48, city: 'Oberstdorf', img: 'girl137.jpg' },
+      { name: 'Yara', age: 51, city: 'Immenstadt', img: 'girl138.jpg' },
+      { name: 'Zara', age: 45, city: 'Füssen', img: 'girl139.jpg' },
+      { name: 'Antonia', age: 53, city: 'Memmingen', img: 'girl140.jpg' },
+      { name: 'Barbara', age: 47, city: 'Kempten', img: 'girl141.jpg' },
+      { name: 'Carla', age: 50, city: 'Biberach', img: 'girl142.jpg' },
+      { name: 'Dalia', age: 44, city: 'Sigmaringen', img: 'girl143.jpg' },
+      { name: 'Esther', age: 49, city: 'Ravensburg', img: 'girl144.jpg' },
+      { name: 'Fabienne', age: 52, city: 'Friedrichshafen', img: 'girl145.jpg' },
+      { name: 'Giulia', age: 46, city: 'Lindau', img: 'girl146.jpg' },
+      { name: 'Helene', age: 54, city: 'Allgäu', img: 'girl147.jpg' },
+      { name: 'Ida', age: 48, city: 'Leutkirch', img: 'girl148.jpg' },
+      { name: 'Johanna', age: 51, city: 'Buchloe', img: 'girl149.jpg' },
+      { name: 'Kaia', age: 43, city: 'Landsberg', img: 'girl150.jpg' },
+      { name: 'Lina', age: 47, city: 'Schwangau', img: 'girl151.jpg' },
+      { name: 'Mia', age: 55, city: 'Füssen', img: 'girl152.jpg' },
+      { name: 'Nora', age: 50, city: 'Oberammergau', img: 'girl153.jpg' },
+      { name: 'Olena', age: 45, city: 'Garmisch-Partenkirchen', img: 'girl154.jpg' },
+      { name: 'Polina', age: 49, city: 'Wessobrunn', img: 'girl155.jpg' },
+      { name: 'Quinta', age: 52, city: 'Steinach', img: 'girl156.jpg' },
+      { name: 'Rina', age: 46, city: 'Krumbach', img: 'girl157.jpg' },
+      { name: 'Sina', age: 53, city: 'Augsburg', img: 'girl158.jpg' },
+      { name: 'Tiina', age: 44, city: 'Dinkelsbühl', img: 'girl159.jpg' },
+      { name: 'Uma', age: 48, city: 'Rothenburg', img: 'girl160.jpg' },
+      { name: 'Vera', age: 51, city: 'Feuchtwangen', img: 'girl161.jpg' },
+      { name: 'Wera', age: 47, city: 'Ansbach', img: 'girl162.jpg' },
+      { name: 'Yara', age: 54, city: 'Weißenburg', img: 'girl163.jpg' },
+      { name: 'Zuzana', age: 43, city: 'Neu-Ulm', img: 'girl164.jpg' },
+      { name: 'Aliya', age: 50, city: 'Illertissen', img: 'girl165.jpg' },
+      { name: 'Bella', age: 46, city: 'Mindelheim', img: 'girl166.jpg' },
+      { name: 'Cora', age: 52, city: 'Lindau', img: 'girl167.jpg' },
+      { name: 'Delia', age: 49, city: 'Biberach', img: 'girl168.jpg' },
+      { name: 'Elsa', age: 45, city: 'Blaubeuren', img: 'girl169.jpg' },
+      { name: 'Fanny', age: 51, city: 'Tübingen', img: 'girl170.jpg' },
+      { name: 'Georgia', age: 48, city: 'Reutlingen', img: 'girl171.jpg' },
+      { name: 'Hedy', age: 53, city: 'Singen', img: 'girl172.jpg' },
+      { name: 'Indigo', age: 44, city: 'Offenburg', img: 'girl173.jpg' },
+      { name: 'Jule', age: 50, city: 'Rottweil', img: 'girl174.jpg' },
+      { name: 'Kiara', age: 47, city: 'Villingen', img: 'girl175.jpg' },
+      { name: 'Lydia', age: 52, city: 'Triberg', img: 'girl176.jpg' },
+      { name: 'Maya', age: 46, city: 'Titisee', img: 'girl177.jpg' },
+      { name: 'Noa', age: 49, city: 'Waldshut', img: 'girl178.jpg' },
+      { name: 'Osa', age: 54, city: 'Freiburg', img: 'girl179.jpg' },
+      { name: 'Pia', age: 43, city: 'Emmendingen', img: 'girl180.jpg' },
+      { name: 'Qiana', age: 51, city: 'Lörrach', img: 'girl181.jpg' },
+      { name: 'Ruby', age: 45, city: 'Wehr', img: 'girl182.jpg' },
+      { name: 'Sophie', age: 48, city: 'Bad Säckingen', img: 'girl183.jpg' },
+      { name: 'Tilly', age: 55, city: 'Staufen', img: 'girl184.jpg' },
+      { name: 'Uma', age: 47, city: 'Villingen-Schwenningen', img: 'girl185.jpg' },
+      { name: 'Vivien', age: 50, city: 'Donaueschingen', img: 'girl186.jpg' },
+      { name: 'Winnie', age: 52, city: 'Hechingen', img: 'girl187.jpg' },
+      { name: 'Xyla', age: 44, city: 'Balingen', img: 'girl188.jpg' },
+      { name: 'Yara', age: 49, city: 'Calw', img: 'girl189.jpg' },
+      { name: 'Zola', age: 53, city: 'Horb', img: 'girl190.jpg' },
+      { name: 'Alina', age: 46, city: 'Trossingen', img: 'girl191.jpg' },
+      { name: 'Baya', age: 51, city: 'Geisingen', img: 'girl192.jpg' },
+      { name: 'Cléo', age: 45, city: 'St. Georgen', img: 'girl193.jpg' },
+      { name: 'Dorothea', age: 48, city: 'Schramberg', img: 'girl194.jpg' },
+      { name: 'Elaine', age: 54, city: 'Hausen im Wiesental', img: 'girl195.jpg' },
+      { name: 'Florence', age: 47, city: 'Barr', img: 'girl196.jpg' },
+      { name: 'Genevieve', age: 50, city: 'Rheinfelden', img: 'girl197.jpg' },
+      { name: 'Harper', age: 43, city: 'Basel', img: 'girl198.jpg' },
+      { name: 'Ivy', age: 52, city: 'Lörrach', img: 'girl199.jpg' },
+      { name: 'Juniper', age: 46, city: 'Wehr am Rhein', img: 'girl200.jpg' },
+      { name: 'Kailani', age: 49, city: 'Ebringen', img: 'girl201.jpg' },
+      { name: 'Liora', age: 53, city: 'Merzhausen', img: 'girl202.jpg' },
+      { name: 'Maia', age: 44, city: 'Wettingen', img: 'girl203.jpg' },
+      { name: 'Nell', age: 50, city: 'Binningen', img: 'girl204.jpg' },
+      { name: 'Oria', age: 47, city: 'Pratteln', img: 'girl205.jpg' },
+      { name: 'Pippa', age: 51, city: 'Muttenz', img: 'girl206.jpg' },
+      { name: 'Queenie', age: 45, city: 'Reinach', img: 'girl207.jpg' },
+      { name: 'Romy', age: 48, city: 'Liestal', img: 'girl208.jpg' },
+      { name: 'Sienna', age: 55, city: 'Arlesheim', img: 'girl209.jpg' },
+      { name: 'Tess', age: 46, city: 'Aesch', img: 'girl210.jpg' },
+      { name: 'Una', age: 52, city: 'Binningen', img: 'girl211.jpg' },
+      { name: 'Valerie', age: 49, city: 'Itingen', img: 'girl212.jpg' },
+      { name: 'Willow', age: 43, city: 'Zeigle', img: 'girl213.jpg' },
+      { name: 'Xanthe', age: 50, city: 'Arlesheim', img: 'girl214.jpg' },
+      { name: 'Ylva', age: 47, city: 'Frenkendorf', img: 'girl215.jpg' },
+      { name: 'Zoey', age: 54, city: 'Therwil', img: 'girl216.jpg' },
+      { name: 'Zoe', age: 45, city: 'Reinach', img: 'girl217.jpg' },
+      { name: 'Ayla', age: 51, city: 'Liestal', img: 'girl218.jpg' },
+      { name: 'Brynn', age: 48, city: 'Arbon', img: 'girl219.jpg' },
+      { name: 'Camila', age: 53, city: 'Romanshorn', img: 'girl220.jpg' },
+      { name: 'Daphne', age: 46, city: 'Rheineck', img: 'girl221.jpg' },
+      { name: 'Elara', age: 50, city: 'Meersburg', img: 'girl222.jpg' }
     ];
 
     // ===== EINZIGARTIGE ZUFÄLLIGE PROFILE AUSWÄHLEN =====
